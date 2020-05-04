@@ -1,0 +1,53 @@
+.flip-small-box {
+    background-color: transparent;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    /*    margin: 10% auto 10px auto;*/
+    margin:0 auto 10px auto;
+    cursor: pointer;
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-small-box-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-small-box:hover .flip-small-box-inner {
+    transform: rotateY(720deg);
+  }
+  
+  
+  /* Position the front and back side */
+  .flip-small-box-front, .flip-small-box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-small-box-front {
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-small-box-back {
+    background-color: transparent;
+    color: white;
+    transform: rotateY(180deg);
+  }
+
+
+@media screen and (min-width: 330px) {
+    .flip-small-box {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+}

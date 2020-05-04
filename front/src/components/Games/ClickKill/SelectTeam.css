@@ -1,0 +1,103 @@
+.squareBackgroundSmall {
+    display: none;
+}
+.squareBackground {
+    background-color: white;
+    opacity: 0.9;
+}
+.squareBackground:hover {
+    background-color: #176B25;
+    opacity: 1;
+}
+#team-container {
+    width: 80%;
+    height: 80%;
+    background: #043A40 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+#team-title {
+    top: 52px;
+    left: 34px;
+    width: 308px;
+    height: 98px;
+    background: transparent 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+#team-subtitle {
+    top: 181px;
+    left: 49px;
+    width: 280px;
+    height: 20px;
+    text-align: left;
+    font: Regular 20px/24px Segoe UI;
+    letter-spacing: 0;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0px #00000029;
+    opacity: 1;
+}
+
+.img-team {
+    display: inline-block;
+    display: flex;
+    margin:auto;
+    justify-content: center;
+}
+
+.img-container {
+    position: relative;
+    max-width: 565px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin: 0 auto 0 auto;
+ }
+
+.flagSquare {
+    cursor: pointer;
+}
+
+.titleTeams {
+    font-size: 20px;
+}
+
+#selectTeamContainer {
+    margin : 2% 0 5% 0;
+}
+#carouselTeams{
+    display: none;
+}
+
+@media (max-width: 700) {
+    .squareBackground {
+        display: none;
+    }
+    .squareBackgroundSmall {
+        display: block;
+    }
+}
+
+
+@media (max-width: 330px){
+    #team-container{
+        height: 100%;
+    }
+    .titleTeams{
+        font-size: 2em;
+    }
+    #teams.img-container{
+        display:none
+    }
+    #carouselTeams{
+        display:block;
+    } 
+    #carouselTeams img{
+        width: 150px;
+        height: 178px;
+        cursor: pointer
+    }
+    .titleTeams {
+        font-size: 20px;
+    }
+}

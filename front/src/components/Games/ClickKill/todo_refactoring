@@ -1,0 +1,42 @@
+ACTUAL STATE OF THE BRANCH (to understand everything, have a look in the lena branch of the hackaton ;) )
+- ui-grid implemented for the choice of teams (many things changed in BigBoard.js state and in SelectTeam.js) >> works well now
+- All fixed position have been deleted in the state (as the idea is not to use an array but a grid, see below in "ideas")
+- the render has been changed a lot (as there is no array anymore)
+- game : the image doesn't move (as no positions are passed from the BigBoard) but the clicks work and the result is displayed
+- reorganisation of the bigBoard render as the game was displayed above the start / reset buttons
+- unusefull things in the imports. I'll sort that later
+
+PROBLEM TO SOLVE : REPLACING THE FIXED TABLE (set in state.smallSquaresArray of the previous BigBoard.js) BY A RESPONSIVE ONE (With Material-Ui)
+ > How : by using the Material Ui grid + the Z-index of material-ui (for positioning elements at a certain place)
+
+Difficulties : 
+- Elements from the smallSquares Array are used to pass infos to SmallSquares aswell as in the render of BigBoard.
+- the index catched from the map of the smallSquaresArray is used to match the click with the position of the image
+
+Ideas :
+. replacing the state.smallSquaresArray by :
+    directly in the render : A 20 SQUARES GRID containing the smallSquares. Passing A Z-INDEX TO EVERY SINGLE SmallSQUARE
+    > Problem : with a grid we can't do a map to catch the indexes 
+    > Solution : need to use the Zindex of the grid instead of the index from the map
+. in SmallSquare : instead of all calls of position : calling the Zindex
+
+
+
+How the square game part could more or less look like in the render: 
+
+return (
+    const zIndex = 0
+    <div>
+        <div className="img-container">
+            <div className={classes.root}>
+            {20 *
+                <Grid container spacing={3}>                        
+                    <Grid item xs={3} zIndex={zIndex +1}></Grid>
+                </Grid>
+                  }
+            </div>
+        </div>   
+    </div>
+  )
+}
+

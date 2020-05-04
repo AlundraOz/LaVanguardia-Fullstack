@@ -1,0 +1,187 @@
+.OneToFifty {
+    background-color: #1e162e;
+
+    & .rowIcons{
+        display: flex;
+        justify-content: flex-end;
+        & div{
+            margin-right: 5px;
+        }
+    }
+
+    & .OneToFiftyContent {
+        @media screen and (max-width: 335px) {
+            margin-top: 20px;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & p {
+            margin: 0;
+        }
+
+        & .justifyCenter {
+            display: flex;
+            justify-content: center;
+        }
+
+        & .alignCenter {
+            display: flex;
+            align-items: center;
+        }
+
+        & .timeAndActualNumber {
+            margin-bottom: 20px;
+            background-color: white;
+            border: 2px solid #DB8A74;
+            border-radius: 20px;
+            color: #444054;
+            width: 70vw;
+            padding: 10px 0;
+
+            @media screen and (max-width: 335px) {
+                display: none;
+            }
+
+            & .chronoText {
+                font-size: x-large;
+                font-weight: bold;
+            }
+        }
+
+        & .numbersGrid {
+            width: 320px;
+            margin: auto;
+
+            @media screen and (max-width: 400px) {
+                width: 270px;
+            }
+
+            @media screen and (max-width: 335px) {
+                width: 200px;
+            }
+
+            & .cellNumber_0 {
+                background-color: #DB8A74;
+                color: white;
+                margin: 2px;
+                height: 60px;
+                width: 60px;
+                font-size: 28px;
+                font-weight: 600;
+                cursor: pointer;
+
+                @media screen and (max-width: 400px) {
+                    height: 50px;
+                    width: 50px;
+                }
+
+                @media screen and (max-width: 335px) {
+                    height: 36px;
+                    width: 36px;
+                    font-size: 22px;
+                }
+            }
+
+            & .cellNumber_1 {
+                background-color: white;
+                color: #DB8A74;
+                // border-radius: 10px;
+                margin: 2px;
+                height: 60px;
+                width: 60px;
+                font-size: 28px;
+                font-weight: 600;
+                animation: bounceIn 0.5s ease-in-out;
+                cursor: pointer;
+
+                @keyframes bounceIn {
+                    0% {
+                        transform: scale(0);
+                        opacity: 0;
+                    }
+
+                    100% {
+                        transform: scale(1);
+                    }
+                }
+
+                @media screen and (max-width: 400px) {
+                    height: 50px;
+                    width: 50px;
+                }
+
+                @media screen and (max-width: 335px) {
+                    height: 36px;
+                    width: 36px;
+                    font-size: 22px;
+                }
+
+            }
+
+            & .cellNumber_2 {
+                background-color: #DB8A74;
+                opacity: 0.5;
+                margin: 2px;
+                height: 60px;
+                width: 60px;
+
+                @media screen and (max-width: 400px) {
+                    height: 50px;
+                    width: 50px;
+                }
+
+                @media screen and (max-width: 335px) {
+                    height: 36px;
+                    width: 36px;
+                    font-size: 22px;
+                }
+            }
+        }
+
+        & .restartButton {
+            background-color: white;
+            border: 2px solid #DB8A74;
+            margin: 15px;
+            color: #444054;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            padding: 5px 10px;
+            font-weight: 600;
+
+            @media screen and (max-width: 335px) {
+                display: none !important;
+            }
+        }
+
+        & .iframeOneToFifty {
+            display: none !important;
+
+            @media screen and (max-width: 335px) {
+                display: block !important;
+            }
+
+            & .timeAndActualNumberIframe {
+                color: white;
+                width: 70vw;
+                font-weight: bold;
+            }
+
+            & .restartButtonIframe {
+                background-color: white;
+                border: 2px solid #DB8A74;
+                margin: 6px;
+                color: #444054;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 10px;
+                padding: 0 10px;
+                font-weight: 600;
+            }
+        }
+    }
+
+
+}

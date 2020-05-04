@@ -1,0 +1,136 @@
+.item-card {
+    width: 125px;
+    height: 125px;
+    margin-top: 5px;
+ }
+ 
+ .cover {
+     width: 125px;
+     height: 125px;
+     background-color: #ffb300;
+     cursor: pointer;
+ }
+ 
+ .content {
+     width: 125px;
+     height: 125px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ 
+ .ReactFlipCard {
+     width: 100%;
+     height: 100%;
+ }
+
+
+ @media (max-width: 715px) {
+    .content {
+        margin: 2px;
+        width: 90px;
+        height: 90px;
+    }
+
+    .content img {
+        margin: 2px;
+        width: 90px;
+        height: 90px;
+    }
+
+    .cover {
+        margin: 2px;
+        width: 90px;
+        height: 90px;
+    }
+    .item-card {
+        margin: 2px;
+        width: 90px;
+        height: 90px;
+     }
+   
+}
+
+@media (max-width: 715px) {
+    .content {
+        margin: 2px;
+        width: 110px;
+        height: 110px;
+    }
+
+    .content img {
+        margin: 2px;
+        width: 110px;
+        height: 110px;
+    }
+
+    .cover {
+        margin: 2px;
+        width: 110px;
+        height: 110px;
+        cursor: pointer;
+    }
+    .item-card {
+        margin: 2px;
+        width: 110px;
+        height: 110px;
+     }
+    }
+
+ @media (max-width: 420px) {
+    .content {
+        margin-top: 0;
+        width: 80px;
+        height: 80px;
+    }
+
+    .content img {
+        margin-top: 5px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .cover {
+        margin-top: 5px;
+        width: 80px;
+        height: 80px;
+        cursor: pointer;
+    }
+    .item-card {
+        margin-top: 5px;
+        width: 80px;
+        height: 80px;
+     }
+   
+}
+
+@media (max-width: 350px) {
+    .content {
+        margin: 0 2px 0 2px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .content img {
+        margin: 0 2px 2px 2px;
+        margin-right: 2px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .cover {
+        margin: 0 2px 2px 2px;
+        margin-right: 2px;
+
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+    .item-card {
+        margin: 0 2px 2px 2px;
+        margin-right: 2px;
+        width: 50px;
+        height: 50px;
+     }
+   
+}

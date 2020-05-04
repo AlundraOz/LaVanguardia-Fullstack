@@ -1,0 +1,138 @@
+.memory-header {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.title {
+    font-size: 25px;
+    padding: 10px;
+    color: #fff;
+}
+
+.memoryResult {
+    color: white;
+    font-weight: bold;
+}
+
+.reinit-button {
+    color: rgb(40, 40, 40);
+    background-color: lightgray;
+    cursor: pointer;
+    padding: 5px;
+    max-width: 100px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.reinit-button:active {
+    background-color: darkgray;
+    color: white;
+}
+
+.winnerMemoryResult {
+    position: fixed;
+    width: 50%;
+    max-width: 200px;
+    height: 50px;
+    margin:5% auto 5% auto; /* Will not center vertically and won't work in IE6/7. */
+    left: 0;
+    right: 0;
+    background-color: purple;
+    color: white;
+    z-index: 2;
+}
+
+.winner-reinit-button {
+    position: fixed;
+    width: 50%;
+    max-width: 200px;
+    height: 200px;
+    margin: 12% auto; /* Will not center vertically and won't work in IE6/7. */
+    left: 0;
+    right: 0;
+    background-color: #00004C;
+    color: white;
+    z-index: 2;
+}
+
+.winner-reinit-button-iframe {
+    position: fixed;
+    top: 5px;
+    font-size: 15px;
+    width: 100px;
+    height: 60px;
+    margin: auto; /* Will not center vertically and won't work in IE6/7. */
+    left: 0;
+    right: 0;
+    background-color: grey;
+    border: solid 2px white;
+    border-radius: 4px;
+    color: white;
+    z-index: 4;
+    display: none;
+}
+
+.fa-undo-alt {
+    display: none
+}
+
+@media (max-width: 400px) {
+    .memoryResult {
+        margin:9% auto 5% auto;
+    }
+    .winner-reinit-button {
+        margin: 25% auto;
+    }
+}
+
+@media (max-width: 350px) {
+    .memory-header {
+        position: fixed;
+        top: 10px;
+        left: 30%;
+    }
+
+    .title {
+        display: none
+    }
+    .memory-body {
+        justify-content: space-between;
+    }
+
+    .memoryResult {
+        font-size: 25px;
+        margin: 0 auto ;
+        position: relative;
+    }
+
+    .reinit-button {
+        font-size: 12px !important;
+        margin-bottom: 2px;
+        padding: 0px;
+        background-color: grey;
+        color: white;
+    }
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+    }
+    .memory-header {
+        margin-bottom: 0px;
+        height: 5%;
+        display: flex;
+        flex-direction: column;
+    }
+    .winner-reinit-button-iframe {
+        display: block;
+    }
+    .winner-reinit-button {
+        display: none
+    }
+    .winnerMemoryResult {
+        display: none
+    }
+}

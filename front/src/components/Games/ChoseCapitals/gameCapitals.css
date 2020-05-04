@@ -1,0 +1,275 @@
+
+.container-game{
+    height: 95vh;
+    background: rgb(10,14,28);
+    background: linear-gradient(0deg, rgba(10,14,28,1) 40%, rgba(45,46,80,1) 100%);
+    font-family: Arial,Helvetica,sans-serif;
+    position: relative;
+}
+
+.backgroundCity{
+    opacity: 0.5;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width:50%;
+    z-index: 0;
+}
+.startGame-page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.titleCity{
+    z-index: 1;
+    width: 25%;
+}
+/* .instrucciones{
+    color:white;
+    background-color: #c53e3b;
+    border-radius: 15%;
+    opacity: 0.8;
+    margin-top: 60%;
+
+} */
+.region-select{
+    width: 20%;
+    background-color: white;
+    z-index: 1;
+    border: 3px solid #040F29;
+    border-radius: 15%;
+    opacity: 0.8; 
+    
+}
+.region-select h6, select{
+    color: #040F29;
+    font-weight: bold;
+    padding: 10px;
+    border:0;
+}
+.startGame-button{
+    width: 180px;
+    height: 180px;
+    background:url('./img/Componente.svg') no-repeat padding-box;
+    background-size:contain;
+    border: none;
+    z-index: 1;
+}
+.playingGame{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.incorrecto{
+    color: #c53e3b;
+    font-size: 2em;
+    font-weight: bold;
+    z-index: 1;
+    background-color: white;
+    opacity: 0.6;
+    border-radius: 15px;
+}
+
+.counterGame-button{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    color: #c53e3b;
+    font-size: 5.5em;
+    font-weight: bold;
+    border:3px solid white;
+    background-color: white;
+    z-index: 1;
+    margin: 20px;
+}
+.country{
+    width: 312px;
+    padding: 20px;
+    background: #9AC1D9 ;
+    border-radius: 25px;
+    z-index: 2;
+    border: 1px solid #040F29;
+    color:#040F29;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 20px;
+}
+.score{
+    padding: 25px;
+    background: white;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.5em;
+    border: 2px solid #040F29;
+    color:#040F29;
+    z-index: 1;
+}
+.flex-butons-capitals{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    z-index: 1;
+}
+.choose-capital{
+    width: 152px;
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px #00000029;
+    border-radius: 25px;
+    border: 1px solid #2b3b6f;
+    color:#2b3b6f;
+    font-weight: bold;
+    margin:10px;
+    z-index: 1;
+}
+
+.gameover{
+    font-size: 4em;
+    font-weight: bold;
+    color:white
+}
+.play-again{
+    color: #c53e3b;
+    font-weight: bold;
+    font-size: 2em;
+    width: 300px;
+    height: 100px;
+    background: #FFFFFF;
+    border-radius: 25px;
+    z-index: 1;
+}
+
+/* .shered-link{
+    width: 250px;
+    display: flex;
+    justify-content: space-around;
+} */
+.containerInstruction {
+    width: 100vw;
+}
+@media (max-width: 1200px) {
+    .titleCity{
+        width: 50%;
+    }
+    .backgroundCity{
+        width: 70%;
+        left: 16%;
+    }
+    .region-select{
+        width: 60%;
+        padding: 15px;
+    }
+    .region-select h6{
+        font-size: 1.7em;
+    }
+    .region-select select{
+        font-size: 1.5em;
+    }
+    .country{
+        width: 60%;
+        font-size: 2em;
+    }
+    .flex-butons-capitals{
+        grid-template-columns: auto auto;
+    }
+    .choose-capital{
+        width: 250px;
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 600px) {
+    .titleCity{
+        width: 80%;
+    }
+    .backgroundCity{
+        width: 100%;
+        left: 0;
+    }
+    .region-select{
+        width: 80%;
+        padding: 5px;
+    }
+    .region-select h6, select{
+        font-size: 1.5em;
+    }
+    .country{
+        width: 60%;
+        font-size: 1.5em;
+    }
+    .flex-butons-capitals{
+        grid-template-columns: auto auto;
+    }
+    .choose-capital{
+        width: 150px;
+        padding: 20px;
+        margin:10px;
+      
+    }
+    .incorrecto{
+        font-size: 1.5em;
+    }
+  }
+
+
+  @media (max-width: 330px){
+    .titleCity{
+        width: 40%;
+    }
+    .region-select{
+        width: 70%;
+        padding: 5px;
+    }
+    .region-select h6{
+        font-size: 0.8em;
+        padding: 3px;
+    }
+    .region-select select{
+        font-size: 0.7em;
+        padding: 3px;
+    }
+    .startGame-button{
+        width: 100px;
+        height: 100px;
+    }
+    .counterGame-button{
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        margin: 5px;
+        font-size: 1em;
+    }
+    .score{
+        padding: 5px;
+        font-size: 1em;
+    }
+    .country{
+        width: 60%;
+        padding: 5px;
+        font-size: 0.8em;
+        margin: 5px;
+    }
+    .choose-capital{
+        width: 100px;
+        padding: 5px;
+        margin:5px;
+        font-size: 0.7em;
+      
+    }
+    .incorrecto{
+        font-size: 0.5em;
+    }
+    .gameover{
+        z-index: 1;
+        font-size: 2em ;
+    }
+    .play-again{
+        width: 100px;
+        height: 50px;
+        font-size: 1em;
+    }
+    
+  }

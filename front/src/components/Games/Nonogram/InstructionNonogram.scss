@@ -1,0 +1,37 @@
+.smallInstructions{
+     position: fixed;
+     top: 10px;
+     right: 7px;
+     display: block;
+     z-index: 2;
+     display: flex
+}
+.bigInstructions{
+    margin-right: 5px;
+}
+@media screen and (min-width: 350px) {
+    .smallInstructions {
+        display: none
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+    .bigInstructions {
+        display: none
+    }
+    .modal-content{
+        margin-top: -27px!important;
+
+        & p {
+            margin-bottom: 0px!important;
+        }
+    }
+    .modal-footer{
+        padding: 0.5px!important;
+    }
+    .modal-body{
+        font-size: small!important;
+        padding: 9px!important;
+    }
+}

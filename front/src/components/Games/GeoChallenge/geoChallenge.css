@@ -1,0 +1,358 @@
+.containerGeo{
+  background: #EFEFEF 0% 0% no-repeat padding-box;
+  width: 99.8vw;
+}
+.containerGeoTitle{
+  width:70%;
+  margin: auto;
+}
+.geoChallengeTitle {
+
+  width: 95%;
+  height: auto;
+  margin-top: 20px;
+
+}
+.hidden{
+  display: none;
+}
+.notHidden{
+  display: block;
+}
+
+.titleInstructions{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-bottom: 0;
+
+}
+.titleInstructions h3{
+  color: #001B4D;
+
+}
+.titleInstructions hr{
+  border-top: 3px solid #001B4D;
+  width:80%;
+}
+
+
+
+.leaflet-container {
+    padding: 10px 20px 20px 20px ;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 55vh;
+    background: transparent;
+    display: flex;
+    flex-direction: row;
+}
+
+.flag {
+  width: 100%;
+}
+.counterText{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.counterText p{
+  width: 190px;
+  text-align: center;
+  margin: 0 auto 5px auto;
+  padding: 15px;
+  height: 80px;
+  border-radius: 5px;
+  opacity: 1;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #3A8EC1;
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+.tryAgainButtonPlaying {
+  background-color: #3A8EC1;
+  color: white;
+  border-radius: 4px;
+  border: 2px solid #00000029;
+  margin-top: 10px;
+  height: 40px;
+
+}
+
+.counterTextFinal {
+  background-position: center;
+  -webkit-backdrop-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  background-image: url('/geochallengeTransparent.png');
+  height: 100vh;
+  z-index: 0;
+  display: flex;
+}
+
+.resultGeoChallenge{
+  background-color: white;
+  position: relative;
+  height: 30%;
+  z-index: 5;
+  margin: auto;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid grey;
+  border-radius: 8px;
+  -webkit-box-shadow: 9px 9px 8px -11.5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 9px 9px 8px -11.5px rgba(0,0,0,0.75);
+  box-shadow: 9px 9px 8px -11.5px rgba(0,0,0,0.75);
+  font-weight: bolder;
+
+}
+
+
+.tryAgainButton{
+  background-color: #3A8EC1;
+  color: white;
+  border-radius: 4px;
+  border: 2px solid #00000029;
+  margin-top: 10px;
+
+}
+
+@keyframes rebote {
+  0%   {left:0px; top:0px;}
+  25%  {left:0px; top:0px;}
+  50%  {left:0px; top:-50px;}
+  75%  {left:0px; top:-50px;}
+  100% {left:0px; top:0px;}
+}
+
+.marginFlag{
+  width: 30%;
+ margin: auto;
+}
+.flagDisplay {
+    display: flex;
+    text-align: center;
+    width: 190px;
+    border-radius: 4px;
+    font-size: 25px;
+    border: 10px solid #001c4c;
+    margin: auto;
+
+
+}
+
+/* .totalAnswers {
+  margin: 0 auto;
+  width: 190px;
+  font-family: Arial,Helvetica,sans-serif;
+  padding: 5px;
+  height: 50px;
+  background: orange 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  opacity: 1;
+  font-weight: bold;
+  font-size: 1.5em;
+  color:white;
+
+} */
+
+
+.flagDisplay p {
+    margin-bottom: 15px;
+}
+
+
+
+.exitButton {
+  text-align: center;
+  background-color: #c53e3b;
+  color: #FFFFFF;
+  border:#c53e3b ;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1em;
+  opacity: 1;
+  float: right;
+  margin-top: 0;
+  margin-right: 0;
+}
+
+.containerInstruction {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  width: 100%;
+  font-family: Arial,Helvetica,sans-serif;
+
+}
+
+
+.exitButton a {
+    color: white;
+    text-decoration: none;
+}
+
+.mapContent {
+    position: relative;
+}
+.containerGeoMobile{
+  display: none;
+}
+.counterBorder{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 8px;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: center;
+
+}
+
+
+@media only screen and (max-width: 1026px) and (min-width: 700px) {
+  .containerGeo{
+    height: 80vh;
+    width: 100vw;
+  }
+}
+@media (max-width: 700px) {
+
+  .containerInstruction{
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .containerGeoTitle{
+    display: none;
+  }
+  .titleInstructions{
+    width: 100%;
+    font-size: 0.8em;
+  }
+  .titleInstructions h3{
+    font-size: 1.5em;
+  }
+  .titleInstructions hr{
+    width: 90%;
+  }
+  .containerGeoMobile{
+    display: block;
+    width: 50%;
+  }
+  .marginFlag{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* .geoChallengeTitle {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0px;
+    float: left;
+    background-color: white;
+  }
+
+  .leaflet-container {
+      width: 94%;
+      height: 60vh;
+      background: transparent;
+      margin-left: 3%;
+      margin-right: 2%;
+      margin-top: -50px;
+  }
+
+    .flagDisplay {
+        display: flex;
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+        font-size: 15px;
+        height: 100%;
+    }
+
+
+    .exitButton {
+        height: 20px;
+        width: 20px;
+        margin-top: 2px;
+        font-size: 7px;
+    }
+
+    .counterTextFinal {
+        height: 30%;
+        width: 50%;
+        padding: 3px;
+        margin-left: 25%;
+
+
+
+    }
+
+    .counterTextFinal p {
+      font-size: 1.5em;
+    }
+      @keyframes rebote {
+        0%   {left:0px; top:0px;}
+        25%  {left:0px; top:0px;}
+        50%  {left:0px; top:-15px;}
+        75%  {left:0px; top:-15px;}
+        100% {left:0px; top:0px;}
+      }
+
+
+
+
+    .totalAnswers {
+
+      margin-top: 5px;
+      font-family: Arial,Helvetica,sans-serif;
+      padding: 5px;
+      height: 40px;
+      width: 125px;
+      background: orange 0% 0% no-repeat padding-box;
+      border-radius: 5px;
+      opacity: 1;
+      font-weight: bold;
+      font-size: 1em;
+      color:white;
+
+    }
+
+
+    .flag {
+      border: 1px solid grey;
+      margin: 0 auto 5px auto;
+      width: 190px;
+      height: 100%;
+    }
+
+    .flagDisplay {
+        border: none;
+        display: flex;
+    }
+
+    .flagDisplay p {
+        font-weight: bold;
+        font-size: 10px;
+        margin-top: 15px;
+        margin-right: 10px;
+        display: inline-block;
+
+    }
+
+    .containerInstruction {
+      width: 100%;
+      padding: 8px;
+      float: left;
+      justify-content: center;
+    }
+ */
+
+
+}

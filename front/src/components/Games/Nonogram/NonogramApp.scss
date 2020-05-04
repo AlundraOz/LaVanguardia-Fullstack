@@ -1,0 +1,197 @@
+.Nonogram {
+    background-image: url('./pruebaBackground.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+
+    @media screen and (max-width:425px) {
+        padding: 0 !important;
+    }
+
+    & .rowIcons{
+        justify-content: flex-end;
+    }
+    
+    & .nonogramContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.btn {
+    padding: .175rem .45rem !important;
+    background-color: #FFFFFF !important;
+    border-color: #707070 !important;
+    border-radius: 1rem !important;
+}
+
+.btn-primary {
+    color: #012B5E !important;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #002A5E !important;
+    border-color: #002A5E !important;
+}
+
+table.center {
+    empty-cells: hide;
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+
+    & .cell {
+        width: 3rem;
+        height: 3rem;
+        display: inline-block;
+        font-size: 1px;
+        padding: 1px;
+        color: white;
+        margin-right: 5px;
+        border: 1.4px solid #707070;
+        border-radius: 10px;
+
+        @media screen and (max-width:425px) {
+            margin-right: 1px;
+        }
+
+        animation: bounceIn 1.5s ease-in-out;
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media screen and (max-width:425px) {
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+
+    // Cases of the cells...No selected:0 /OK:1 / KO:2 
+    & .cell_0 {
+        background-color: #b9b9b9;
+    }
+
+    & .cell_1 {
+        background-color: #383838;
+    }
+
+    & .cell_2 {
+        background-color: rgb(243, 104, 104);
+    }
+}
+
+.clue {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: right;
+    color: #383838;
+
+    @media screen and (max-width:425px) {
+        font-size: 0.8rem;
+    }
+}
+
+.h_clue {
+    letter-spacing: 12px;
+    padding-right: 4px;
+    padding-bottom: 8px;
+
+    @media screen and (max-width:425px) {
+        letter-spacing: 3px;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    outline: 0;
+}
+
+.restart_button {
+    margin: 5px;
+    padding: 5px 10px !important;
+
+    @media screen and (max-width:335px) {
+        display: none !important;
+    }
+}
+
+.selector_button {
+    margin: 5px;
+    padding: 5px 10px !important;
+
+    @media screen and (max-width:335px) {
+        display: none!important;
+    }
+}
+
+.v_clue_p {
+    margin: auto;
+    padding-right: 4px;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    padding-bottom: 4px;
+}
+
+.buttons {
+    display: flex;
+    margin: 0.9rem;
+    justify-content: center;
+
+    @media screen and (max-width:425px) {
+        margin: 0.3rem;
+    }
+}
+
+.nonograma_image {
+    top: 90px;
+    position: absolute;
+    left: 0px;
+    height: 100px;
+
+    @media screen and (max-width:950px) {
+        height: 80px;
+        display: none;
+    }
+}
+
+.panda_image {
+    height: 40px;
+    margin-right: 4px;
+
+    @media screen and (max-width:768px) {
+        height: 46px;
+        margin-bottom: -8px;
+
+    }
+
+    @media screen and (max-width:425px) {
+        height: 30px;
+    }
+}

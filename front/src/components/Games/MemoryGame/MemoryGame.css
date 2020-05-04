@@ -1,0 +1,20 @@
+.memory-body {
+    background-image: url('../../sharedImages/memoryBackground.jpg');
+    background-size: cover;
+    display : flex;
+    flex-direction: column;
+  }
+
+
+  div:focus {
+    outline: none !important;
+  }
+
+
+@media (max-width: 360px) {
+  .memory-body {
+    height: 100vh;
+    background-image: none;
+    background-color: rgb(2, 14, 63);
+  }
+}

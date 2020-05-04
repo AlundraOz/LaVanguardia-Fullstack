@@ -1,0 +1,17 @@
+.instructionGames {
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    display: block;
+    z-index: 2;
+}
+@media screen and (max-width: 425px) {
+    .instructionGames {
+        top: 40px;
+    }
+}
+@media screen and (max-width: 350px) {
+    .instructionGames {
+        display: none;
+    }
+}

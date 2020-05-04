@@ -1,0 +1,17 @@
+iframe {
+  border: 0px;
+  margin-top: 20px;
+  padding: 0px;
+}
+
+.allIframesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 7%;
+  justify-content: space-between;
+}
+
+.titleIframeAll {
+  font-family: sans-serif, Arial;
+  margin-top: 5%;
+}

@@ -1,0 +1,145 @@
+#header-profile {
+    margin: 0;
+    padding: 0;
+    transition: 0.4s;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 2888888;
+    font-family: 'Neuton', serif !important;
+
+}
+#header-profile__wrapper.smaller {
+    height: 50px;
+}
+.header-profile__logo.smaller {
+    width: 200px;
+    line-height: 50px;
+    margin-left: 12%;
+    margin-top: auto;
+}
+#header-profile__wrapper {
+    width: 100%;
+    background-color: #001C4C;
+    height: 50px;
+    display: block;
+    margin: auto;
+    padding: 0 10px;
+}
+.navbarRow {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -8px;
+    margin-left: -8px;
+    width: 100%;
+}
+.header-profile__logo {
+    width: 265px;
+    line-height: 30px;
+    margin-left: 14%;
+    margin-top: 1%;
+}
+.header-logo-wrapper .header-fixed-tools {
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: -8px;
+}
+.header-fixed-tools .icon-tool {
+    margin-right: 0;
+    height: 45px;
+    font-size: 16px;
+    font-size: 1rem;
+}
+.imageHome {
+  align-content: center;
+  margin: 13px;
+  height: 45%;
+}
+/*nav.header-menu.marginfix {
+    margin-top: 75px !important;
+}*/
+.navbar {
+    padding: 0 0 !important;
+}
+/* lista menu */
+.header-menu {
+    border: 0;
+    min-height: 45px;
+    margin-bottom: 0;
+    background-color: #3E4D67;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    font-family: 'Neuton', serif;
+    font-size: 20px;
+
+
+}
+
+
+#nav-list {
+    list-style-type: none;
+    display: flex;
+}
+.nav-list-item:first-child {
+    padding-left: 10px;
+}
+.nav-list-item {
+    color: #E7EAEF;
+    cursor: pointer;
+    float: left;
+}
+
+.nav-link a{
+  text-decoration: none;
+}
+
+.nav-link:hover{
+  color: white;
+}
+
+.navbar-collapse {
+    margin-left: 10%;
+
+}
+
+
+
+@media (max-width: 700px) {
+    #header-profile__wrapper {
+        height: 46px;
+    }
+    .header-profile__logo {
+        width: 160px;
+        margin-left: 17px;
+        margin-top: 0;
+    }
+    .nav-list-item {
+        float: none;
+    }
+
+}
+@media (max-width: 331px) {
+  #header-profile {
+      display: none;
+  }
+  .firstRow {
+    display: none;
+  }
+  #header-profile__wrapper {
+    display: none;
+}
+}
+
+@media (max-width: 700px) {
+  #header-profile__wrapper {
+      height: 46px;
+  }
+  
+  .header-profile__logo {
+    line-height: 26px;
+    margin-left: 0;
+    width: 182px;
+  }
+  }
