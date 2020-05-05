@@ -4,43 +4,63 @@ const express = require('express'),
       config = require('./configs/config'),
       app = express();
 // 1
-app.set('llave', config.llave);
+app.set('secret_key', config.secret_key);
 // 2
 app.use(bodyParser.urlencoded({ extended: true }));
 // 3
 app.use(bodyParser.json());
 // 4
 app.listen(3000,()=>{
-    console.log('Servidor iniciado en el puerto 3000') 
+    console.log('Server listening to port 3000') 
 });
 // 5
 app.get('/', function(req, res) {
-    res.send('Inicio');
+    res.send('Start');
 });
 
-app.post('/autenticar', (req, res) => {
-    if(req.body.usuario === "asfo" && req.body.contrasena === "holamundo") {
+app.post('/authenticate', (req, res) => {
+    if(req.body.user === "asfo" && req.body.contrasena === "holamundo") {
   const payload = {
    check:  true
   };
-  const token = jwt.sign(payload, app.get('llave'), {
+  const token = jwt.sign(payload, app.get('secret_key'), {
    expiresIn: 1440
   });
   res.json({
-   mensaje: 'Autenticación correcta',
+   message: 'Authentication correct',
    token: token
   });
     } else {
-        res.json({ mensaje: "Usuario o contraseña incorrectos"})
+        res.json({ message: "user or password incorrect"})
     }
 })
 
-app.get('/datos', rutasProtegidas, (req, res) => {
-    const datos = [
-     { id: 1, nombre: "Asfo" },
-     { id: 2, nombre: "Denisse" },
-     { id: 3, nombre: "Carlos" }
+const protectedRoutes = express.Router(); 
+protectedRoutes.use((req, res, next) => {
+    const token = req.headers['access-token'];
+ 
+    if (token) {
+      jwt.verify(token, app.get('secret_key'), (err, decoded) => {      
+        if (err) {
+          return res.json({ message: 'Token not valid' });    
+        } else {
+          req.decoded = decoded;    
+          next();
+        }
+      });
+    } else {
+      res.send({ 
+          message: 'Token not proved.' 
+      });
+    }
+ });
+
+ app.get('/data', protectedRoutes, (req, res) => {
+    const data = [
+     { id: 1, name: "Asfo" },
+     { id: 2, name: "Denisse" },
+     { id: 3, name: "Carlos" }
     ];
     
-    res.json(datos);
+    res.json(data);
    });
