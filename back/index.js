@@ -1,20 +1,29 @@
+
 const express = require('express'),
       bodyParser = require('body-parser'),
       jwt = require('jsonwebtoken'),
       app = express();
-const router = express.Router();
 const connection = require('./configs/config.js');
+const myconnection = require('express-myconnection')
+const router = express.Router();
+const session = require('express-session')
+
 const port = 5000;
 var cors = require('cors')
       
 // 1
-app.set('secret_key', config.secret_key);
+//app.set('secret_key', config.secret_key);
 // 2
 app.use(bodyParser.urlencoded({ extended: true }));
 // 3
 app.use(bodyParser.json());
 app.use(cors())
-
+app.use(session({
+  /* genid: function(req) {
+    return genuuid() // use UUIDs for session IDs
+  }, */
+  secret: 'keyboard cat'
+}))
 // 4
 app.listen(port,(err)=>{
     if (err) {
@@ -38,22 +47,40 @@ app.get('/', function(req, res) {
    })
 })
 
-/*poner este en el de arriba*/
+//user selected
+app.get('/users_profiles/:email', (req, res) => {
+  
+    // Get the data sent
+    const email = req.params.email;
+  
 
+  connection.query('SELECT * FROM users WHERE email = ? ', email, (err, results) => {
+    console.log('hhhhhh')
+    if(err) {
+      res.status(500).send('error fetching posts')
+    } else {
+      res.json(results)
+    }
+  })
+})
+
+//LOG IN
 app.post('/authenticate', (req, res, next) => {
-  req.getConnection( (err, connection)=>{
+    
     var data={
       email:req.body.email,
       password: req.body.password
     };
-    var email = data[0],
-      pass= data[1];
-    connection.query(`SELECT email, password FROM users WHERE email = ? AND password = ?`, [email], [pass], function(err, results) {
+    connection.query(`SELECT email, password FROM users WHERE email = ? AND password = ?`, [data.email, data.password], function(err, results) {
+    
       if(results){
         req.session.regenerate( ()=>{
+          console.log(data.email)
           req.session.login = true;
           req.session.email = req.body.email;
-          //res.redirect('/users/index');
+          //return the loged user to the front, to use this url for context
+          res.redirect(`/users_profiles/${data.email}`);
+          
         });
 
       }else{
@@ -61,15 +88,15 @@ app.post('/authenticate', (req, res, next) => {
       }
   })
 
-  
-  const formData = {
+
+  /* const formData = {
     email: req.body.email,
     password: req.body.password,
-  }
-  if(formData.email === "asfo" && formData.password === "holamundo") {
+  } */
+   /* if(formData.email === "asfo" && formData.password === "holamundo") {
 const payload = {
  check:  true
-};
+}; 
 const token = jwt.sign(payload, app.get('secret_key'), {
  expiresIn: 1440
 });
@@ -79,8 +106,9 @@ res.json({
 });
   } else {
       res.json({ message: "user or password incorrect"})
-  }
+  } */
 })
+
 
 
 
@@ -105,7 +133,7 @@ protectedRoutes.use((req, res, next) => {
     }
  });
 
-//REGISTER ROUTE, Sign in
+//REGISTER ROUTE, Sign up 
 app.post('/users_profiles', (req, res) => {
 
   const formData = {
