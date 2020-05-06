@@ -3,6 +3,7 @@ const express = require('express'),
       jwt = require('jsonwebtoken'),
       config = require('./configs/config'),
       app = express();
+      
 // 1
 app.set('secret_key', config.secret_key);
 // 2
@@ -19,7 +20,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/authenticate', (req, res) => {
-    if(req.body.user === "asfo" && req.body.contrasena === "holamundo") {
+    if(req.body.user === "asfo" && req.body.password === "holamundo") {
   const payload = {
    check:  true
   };
@@ -36,6 +37,7 @@ app.post('/authenticate', (req, res) => {
 })
 
 const protectedRoutes = express.Router(); 
+
 protectedRoutes.use((req, res, next) => {
     const token = req.headers['access-token'];
  
