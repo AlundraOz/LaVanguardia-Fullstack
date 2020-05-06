@@ -1,3 +1,5 @@
+CREATE DATABASE test_users;
+USE test_users;
 CREATE TABLE `users` (
   `user_id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(100),
@@ -19,3 +21,4 @@ CREATE TABLE `games` (
 ALTER TABLE `user_games` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 ​
 ALTER TABLE `user_games` ADD FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`);
+

@@ -1,15 +1,14 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
       jwt = require('jsonwebtoken'),
-      config = require('./configs/config'),
       app = express();
       const router = express.Router();
-      const connection = require('./config.js');
+      const connection = require('./configs/config.js');
       const port = 5000;
       var cors = require('cors')
       
 // 1
-app.set('secret_key', config.secret_key);
+//app.set('secret_key', config.secret_key);
 // 2
 app.use(bodyParser.urlencoded({ extended: true }));
 // 3
@@ -29,7 +28,17 @@ app.get('/', function(req, res) {
 });
 
 
-/*poner este en el de arriba*/ */
+  app.get('/todo', (req, res) => {
+   connection.query('SELECT * FROM users', (err, results) => {
+     if(err) {
+       res.status(500).send('error fetching posts')
+     } else {
+       res.json(results)
+     }
+   })
+})
+
+/*poner este en el de arriba*/
 
 app.post('/authenticate', (req, res) => {
   if(req.body.user === "asfo" && req.body.password === "holamundo") {
@@ -47,6 +56,7 @@ res.json({
       res.json({ message: "user or password incorrect"})
   }
 })
+
 
 
 const protectedRoutes = express.Router(); 
@@ -70,7 +80,8 @@ protectedRoutes.use((req, res, next) => {
     }
  });
 
-app.post('/todo', (req, res) => {
+app.post('/todo', protectedRoutes, (req, res) => {
+
   const formData = {
     name: req.body.name,
     email: req.body.email,
@@ -97,12 +108,3 @@ app.post('/todo', (req, res) => {
     res.json(data);
    });
 
-  //  app.get('/todo', (req, res) => {
-  //   connection.query('SELECT * FROM users', (err, results) => {
-  //     if(err) {
-  //       res.status(500).send('error fetching posts')
-  //     } else {
-  //       res.json(results)
-  //     }
-  //   })
-  // })
