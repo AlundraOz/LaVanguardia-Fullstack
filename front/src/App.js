@@ -16,7 +16,8 @@ import LavanguardiaPage from './components/LavanguardiaPage/LavanguardiaPage';
 import IndexSnake from './components/Games/Snake/indexSnake';
 import OneToFifty from './components/Games/OneToFifty/OneToFifty';
 import MemoryGame from './components/Games/MemoryGame/MemoryGame';
-import MyProvider from '../../context/MyProvider';
+import TestUser from './components/TestUser/TestUser'
+import MyProvider from './context/MyProvider';
 
 
 const UserExample = {
@@ -86,6 +87,9 @@ class App extends Component {
           </Route>
           <Route path='/MemoryGame'>
             <MemoryGame/>
+          </Route>
+          <Route path='/test_user'>
+            <TestUser/>
           </Route>
           </Switch>
           <Footer />
