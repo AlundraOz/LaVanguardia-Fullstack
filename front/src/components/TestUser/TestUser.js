@@ -8,7 +8,7 @@ const TestUser = () => {
   let [posted, setPosted] = useState(false)
   const postFormValue = e => {
     e.preventDefault()
-    fetch('http://localhost:5000/todo', {
+    fetch('http://localhost:5000/users_profiles', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
