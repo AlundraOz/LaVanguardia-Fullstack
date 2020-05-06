@@ -98,13 +98,13 @@ app.post('/todo', protectedRoutes, (req, res) => {
 
 
 
- app.get('/data', protectedRoutes, (req, res) => {
-    const data = [
-     { id: 1, name: "Asfo" },
-     { id: 2, name: "Denisse" },
-     { id: 3, name: "Carlos" }
-    ];
-    
-    res.json(data);
-   });
+app.get('/data', protectedRoutes, (req, res) => {
+  const data = [
+    { id: 1, name: "Asfo" },
+    { id: 2, name: "Denisse" },
+    { id: 3, name: "Carlos" }
+  ];
+  
+  res.json(data);
+});
 
