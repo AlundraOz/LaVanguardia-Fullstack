@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MyProvider from './context/MyProvider';
 import './App.css';
 import Navbar from './components/Navbar/navbar';
 import Footer from './components/Footer/Footer'
@@ -16,8 +17,8 @@ import LavanguardiaPage from './components/LavanguardiaPage/LavanguardiaPage';
 import IndexSnake from './components/Games/Snake/indexSnake';
 import OneToFifty from './components/Games/OneToFifty/OneToFifty';
 import MemoryGame from './components/Games/MemoryGame/MemoryGame';
-import TestUser from './components/TestUser/TestUser'
-import MyProvider from './context/MyProvider';
+import SignUp from './components/User/SignUp';
+import LogIn from './components/User/Login';
 
 
 const UserExample = {
@@ -25,62 +26,58 @@ const UserExample = {
   img: "https://avatars3.githubusercontent.com/u/59797566?s=460&v=4",
   username: "Pepito",
   age: '28',
+  points: 20
 };
-
 class App extends Component {
   state = {
     user: {},
     timesCliked: false,
-
   }
   simulateUserLogged = () => {
     this.setState({
       user: UserExample,
       timesCliked: true,
-
     })
   }
   userOff = () => {
     this.setState({
       user: {},
       timesCliked: false,
-
     })
   }
-
     render(){
       console.log('comprobación rutas', process.env)
     return (
       <MyProvider>
-        <div className='App'>
-          <Navbar />
-          <Switch>
+      <div className='App'>
+        <Navbar />
+        <Switch>
           <Route exact path ='/'>
-          <LavanguardiaPage />
+            <LavanguardiaPage />
           </Route>
           <Route path='/cityplay'>
-          <AppCapitals/>
+            <AppCapitals/>
           </Route>
           <Route path='/geochallenge'>
-          <GeoChallenge />
+            <GeoChallenge />
           </Route>
           <Route path='/tacleclick'>
-          <BigBoard/>
+            <BigBoard/>
           </Route>
           <Route path='/nonogram'>
-          <NonogramApp/>
+            <NonogramApp/>
           </Route>
           <Route path='/iframe'>
-          <Iframe/>
+            <Iframe/>
           </Route>
           <Route path='/carousel'>
-          <IframeCarousel/>
+            <IframeCarousel/>
           </Route>
           <Route path='/games-section'>
-          <ButtonGames/>
+            <ButtonGames/>
           </Route>
           <Route path='/snake'>
-          <IndexSnake/>
+            <IndexSnake/>
           </Route>
           <Route path='/OneToFifty'>
             <OneToFifty />
@@ -88,12 +85,15 @@ class App extends Component {
           <Route path='/MemoryGame'>
             <MemoryGame/>
           </Route>
-          <Route path='/test_user'>
-            <TestUser/>
+          <Route path='/sign-up'>
+            <SignUp/>
           </Route>
-          </Switch>
-          <Footer />
-        </div>
+          <Route path='/log-in'>
+            <LogIn/>
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
       </MyProvider>
     );
   }

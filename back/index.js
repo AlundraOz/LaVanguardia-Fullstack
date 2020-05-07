@@ -10,7 +10,7 @@ const session = require('express-session')
 
 const port = 5000;
 var cors = require('cors')
-      
+
 // 1
 //app.set('secret_key', config.secret_key);
 // 2
@@ -29,7 +29,7 @@ app.listen(port,(err)=>{
     if (err) {
     throw new Error('Something bad happened...');
 }
-    console.log('Server listening to port 5000') 
+    console.log('Server listening to port 5000')
 });
 // 5
 app.get('/', function(req, res) {
@@ -49,11 +49,8 @@ app.get('/', function(req, res) {
 
 //user selected
 app.get('/users_profiles/:email', (req, res) => {
-  
     // Get the data sent
     const email = req.params.email;
-  
-
   connection.query('SELECT * FROM users WHERE email = ? ', email, (err, results) => {
     console.log('hhhhhh')
     if(err) {
@@ -66,21 +63,22 @@ app.get('/users_profiles/:email', (req, res) => {
 
 //LOG IN
 app.post('/authenticate', (req, res, next) => {
-    
+
     var data={
       email:req.body.email,
       password: req.body.password
     };
-    connection.query(`SELECT email, password FROM users WHERE email = ? AND password = ?`, [data.email, data.password], function(err, results) {
-    
+    var idUser = req.body.id
+    connection.query(`SELECT * FROM users WHERE email = ? AND password = ?`, [data.email, data.password], function(err, results) {
+
       if(results){
         req.session.regenerate( ()=>{
           console.log(data.email)
           req.session.login = true;
           req.session.email = req.body.email;
           //return the loged user to the front, to use this url for context
-          res.redirect(`/users_profiles/${data.email}`);
-          
+          // res.redirect(`/users_profiles/${idUser}`);
+          res.json(results)
         });
 
       }else{
@@ -96,7 +94,7 @@ app.post('/authenticate', (req, res, next) => {
    /* if(formData.email === "asfo" && formData.password === "holamundo") {
 const payload = {
  check:  true
-}; 
+};
 const token = jwt.sign(payload, app.get('secret_key'), {
  expiresIn: 1440
 });
@@ -112,28 +110,28 @@ res.json({
 
 
 
-const protectedRoutes = express.Router(); 
+const protectedRoutes = express.Router();
 
 protectedRoutes.use((req, res, next) => {
     const token = req.headers['access-token'];
- 
+
     if (token) {
-      jwt.verify(token, app.get('secret_key'), (err, decoded) => {      
+      jwt.verify(token, app.get('secret_key'), (err, decoded) => {
         if (err) {
-          return res.json({ message: 'Token not valid' });    
+          return res.json({ message: 'Token not valid' });
         } else {
-          req.decoded = decoded;    
+          req.decoded = decoded;
           next();
         }
       });
     } else {
-      res.send({ 
-          message: 'Token not proved.' 
+      res.send({
+          message: 'Token not proved.'
       });
     }
  });
 
-//REGISTER ROUTE, Sign up 
+//REGISTER ROUTE, Sign up
 app.post('/users_profiles', (req, res) => {
 
   const formData = {
@@ -151,14 +149,13 @@ app.post('/users_profiles', (req, res) => {
 });
 
 
-/* 
+/*
  app.get('/data', protectedRoutes, (req, res) => {
     const data = [
      { id: 1, name: "Asfo" },
      { id: 2, name: "Denisse" },
      { id: 3, name: "Carlos" }
     ];
-    
+
     res.json(data);
    }); */
-
