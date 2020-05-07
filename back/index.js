@@ -3,6 +3,8 @@ const express = require('express'),
       jwt = require('jsonwebtoken'),
       app = express();
 const connection = require('./configs/config');
+const password = require('./configs/password');
+
 const myconnection = require('express-myconnection')
 const router = express.Router();
 const session = require('express-session')
@@ -11,7 +13,7 @@ const port = 5000;
 var cors = require('cors')
       
 // 1
-//app.set('secret_key', config.secret_key);
+  app.set('secret_key', password.secret_key);
 // 2
 app.use(bodyParser.urlencoded({ extended: true }));
 // 3
@@ -46,10 +48,11 @@ app.post('/users_profiles', (req, res) => {
   }
   console.log('USER PROFILE REGISTERING BEFORE QUERY')
   //put these information in the DB users table to create the new user
-  connection.query(`INSERT INTO users VALUES ('11','yo', 'yo', 'yo');`, (err) => {   // change test values with the ones coming from the formData (ex ${formData.name})
+  connection.query(`INSERT INTO users VALUES ('12','kjwn', kjw, 'kjw');`, (err) => {   // change test values with the ones coming from the formData (ex ${formData.name})
     if(err){
       res.status(500).send('Error saving your profile')
     } else {
+      console.log('BIG SUCCESS')
       res.sendStatus(200)
     }
   })
