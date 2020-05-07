@@ -15,6 +15,7 @@ const LogIn = () => {
   const postFormValue = e => {
 
     e.preventDefault()
+    //all i put in the form goes to this route
     fetch('http://localhost:5000/authenticate', {
       method: 'POST',
       headers: new Headers({
@@ -30,7 +31,6 @@ const LogIn = () => {
     // }else{
     // }
   }
-
 
   // useEffect(() => {
   //   //SI EL FORMULARIO ESTA VACIO NO HAGAS NADA, SI EL FORMULARIO ESTA LLENO

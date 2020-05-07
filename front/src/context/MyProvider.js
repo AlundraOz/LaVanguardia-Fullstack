@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 export const MyContext = React.createContext();
+
 class MyProvider extends Component {
   state = {
     user:'',
@@ -13,6 +15,7 @@ class MyProvider extends Component {
           user: user
         })
       }}>
+      //SIEMPRE
         {this.props.children}
       </MyContext.Provider>
     )
