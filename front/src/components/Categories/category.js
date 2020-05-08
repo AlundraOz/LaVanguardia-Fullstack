@@ -21,10 +21,12 @@ const Category = (props) => {
           <p>Todos</p>
         </Link>
         <input className="buttonCategories" type="text" placeholder="Search.."/>
-        <div className="userProfileLogo">
-          <img src={logoProfile} className="imageUserLogin"/>
-          <p>Iniciar Sesión</p>
-        </div>
+        <Link to='/Access'>
+          <div className="userProfileLogo">
+            <img src={logoProfile} className="imageUserLogin"/>
+            <p>Iniciar Sesión</p>
+          </div>
+        </Link>
       </div>
 
     </div>

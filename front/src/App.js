@@ -16,6 +16,7 @@ import LavanguardiaPage from './components/LavanguardiaPage/LavanguardiaPage';
 import IndexSnake from './components/Games/Snake/indexSnake';
 import OneToFifty from './components/Games/OneToFifty/OneToFifty';
 import MemoryGame from './components/Games/MemoryGame/MemoryGame';
+import Access from './components/Access/Access';
 
 const UserExample = {
   name: "Pepito ScrumMaster",
@@ -84,6 +85,9 @@ class App extends Component {
         </Route>
         <Route path='/MemoryGame'>
           <MemoryGame/>
+        </Route>
+        <Route path ='/Access'>
+          <Access/>
         </Route>
         </Switch>
         <Footer />
