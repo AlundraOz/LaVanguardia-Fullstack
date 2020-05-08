@@ -31,7 +31,7 @@ function SignIn() {
   const [data, updateData] = useState({
     correo: "",
     contraseña: ""
-  })
+  } )
 
   return (
     <div className="SignIn">
