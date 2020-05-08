@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 import InstructionGames from '../../SharedButtons/InstructionGames';
 import CloseButton from '../../SharedButtons/CloseButton';
 import titleCity from './img/logo-02.png'
-import backgroundCity from './img/fondo_capitales.png'
+import backgroundCity from './img/fondo_capitales.png';
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions'
 
 export default class GameCapitals extends Component {
     static contextType = MyContext
@@ -90,7 +91,8 @@ export default class GameCapitals extends Component {
         }
     }
     tryAgain = () => {
-      let score = this.state.score;
+        SaveScore(this.state.score, this.context.state.user.results[0].user_id)
+      /* let score = this.state.score;
       let user_id = this.context.state.user.results[0].user_id
       console.log(this.context.state.user.results[0].user_id);
         fetch('http://localhost:5000/game-score', {
@@ -107,7 +109,7 @@ export default class GameCapitals extends Component {
         }else{
             console.log('no hace naa')
           }
-        })
+        }) */
         //in the last state of the game 'end' when we click again  we call the function for playingGame status and change the state for showing this part and reload the default state
         this.getCountry()
         this.setState({

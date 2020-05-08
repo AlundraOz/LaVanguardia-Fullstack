@@ -32,23 +32,24 @@ const useStyles = makeStyles((theme) => ({
 
 function SignIn() {
     const classes = useStyles();
+    
 
     //Submit button
     const submitInfo = async (event) => {
         event.preventDefault();
 
-        await fetch('https://timetable-managment-backend.herokuapp.com/signIn', {
+        await fetch('http://localhost:5000/users_profiles', {
             method: 'POST',
             // mode: "no-cors",
-            headers: {
-                'Accept': 'application/json',
+            headers:new Headers({
                 'Content-Type': 'application/json'
-            },
+              }),
             body: JSON.stringify({
-                nombre: data.nombre,
-                correo: data.correo,
-                contraseña: data.contraseña
+                name: data.name,
+                email: data.email,
+                password: data.password
             })
+             
         })
     }
     //checkEmptyFields array
@@ -56,10 +57,11 @@ function SignIn() {
 
     //State
     const [data, updateData] = useState({
-        nombre: "",
-        correo: "",
-        contraseña: ""
+        name: "",
+        email: "",
+        password: ""
     })
+    
 
     const [repeatPassword,setRepeatpassword] = useState({
         repeatPassword: ''
@@ -73,24 +75,24 @@ function SignIn() {
             <form className={classes.root} noValidate autoComplete="off" onSubmit={(event) => submitInfo(event)}>
                 <div className="row">
                     <div className="col-12">
-                        <TextField id="nombre" label="Nombre" type="text" name="nombre"
-                            value={data.nombre}
-                            onChange={(event) => updateData({ ...data, nombre: event.target.value })} required />
+                        <TextField id="name" label="Name" type="text" name="name"
+                            value={data.name}
+                            onChange={(event) => updateData({ ...data, name: event.target.value })} required />
                     </div>
                     <div className="col-12">
-                        <TextField id="correo" label="Email" type="email" name="correo"
-                            value={data.correo}
-                            onChange={(event) => updateData({ ...data, correo: event.target.value })} required />
+                        <TextField id="email" label="Email" type="email" name="email"
+                            value={data.email}
+                            onChange={(event) => updateData({ ...data, email: event.target.value })} required />
                     </div>
                     <div className="col-12">
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                            <InputLabel htmlFor="standard-adornment-password">Contraseña</InputLabel>
+                            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                             <Input
-                                value={data.contraseña}
-                                id="contraseña"
-                                name="contraseña"
+                                value={data.password}
+                                id="password"
+                                name="password"
                                 type={viewPassword ? 'text' : 'password'}
-                                onChange={(event) => updateData({ ...data, contraseña: event.target.value })}
+                                onChange={(event) => updateData({ ...data, password: event.target.value })}
                                 endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
@@ -105,11 +107,11 @@ function SignIn() {
                     </div>
                     <div className="col-12">
                         <FormControl className={clsx(classes.margin, classes.textField)}>
-                            <InputLabel htmlFor="standard-adornment-password">Repite contraseña</InputLabel>
+                            <InputLabel htmlFor="standard-adornment-password">Repite Password</InputLabel>
                             <Input
                                 value={repeatPassword.repeatpassword}
-                                id="repiteContraseña"
-                                name="repiteContraseña"
+                                id="repitepassword"
+                                name="repitepassword"
                                 type={viewPassword ? 'text' : 'password'}
                                 onChange={(event) => setRepeatpassword({ ...repeatPassword, repeatPassword: event.target.value })}
                                 endAdornment={

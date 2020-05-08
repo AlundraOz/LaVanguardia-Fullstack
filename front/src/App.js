@@ -17,13 +17,10 @@ import LavanguardiaPage from './components/LavanguardiaPage/LavanguardiaPage';
 import IndexSnake from './components/Games/Snake/indexSnake';
 import OneToFifty from './components/Games/OneToFifty/OneToFifty';
 import MemoryGame from './components/Games/MemoryGame/MemoryGame';
-<<<<<<< HEAD
 import Access from './components/Access/Access';
-=======
 import SignUp from './components/User/SignUp';
 import LogIn from './components/User/Login';
 
->>>>>>> a590da9f6e472f751cf8f7e0249fcc65214a8bc7
 
 const UserExample = {
   name: "Pepito ScrumMaster",
@@ -52,50 +49,6 @@ class App extends Component {
     render(){
       console.log('comprobación rutas', process.env)
     return (
-<<<<<<< HEAD
-      <div className='App'>
-        <Navbar />
-        <Switch>
-        <Route exact path ='/'>
-        <LavanguardiaPage />
-        </Route>
-        <Route path='/cityplay'>
-        <AppCapitals/>
-        </Route>
-        <Route path='/geochallenge'>
-        <GeoChallenge />
-        </Route>
-        <Route path='/tacleclick'>
-        <BigBoard/>
-        </Route>
-        <Route path='/nonogram'>
-        <NonogramApp/>
-        </Route>
-        <Route path='/iframe'>
-        <Iframe/>
-        </Route>
-        <Route path='/carousel'>
-        <IframeCarousel/>
-        </Route>
-        <Route path='/games-section'>
-        <ButtonGames/>
-        </Route>
-        <Route path='/snake'>
-        <IndexSnake/>
-        </Route>
-        <Route path='/OneToFifty'>
-          <OneToFifty />
-        </Route>
-        <Route path='/MemoryGame'>
-          <MemoryGame/>
-        </Route>
-        <Route path ='/Access'>
-          <Access/>
-        </Route>
-        </Switch>
-        <Footer />
-      </div>
-=======
       <MyProvider>
         <div className='App'>
           <Navbar />
@@ -139,11 +92,13 @@ class App extends Component {
             <Route path='/log-in'>
               <LogIn/>
             </Route>
+            <Route path ='/Access'>
+          <Access/>
+        </Route>
           </Switch>
           <Footer />
         </div>
       </MyProvider>
->>>>>>> a590da9f6e472f751cf8f7e0249fcc65214a8bc7
     );
   }
 }

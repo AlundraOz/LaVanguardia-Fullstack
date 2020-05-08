@@ -70,6 +70,7 @@ const LogIn = () => {
     <br />
     <hr />
     </div>
+
   );
 }
 export default LogIn;

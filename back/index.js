@@ -39,7 +39,6 @@ app.get('/', function(req, res) {
 // send information from the form (front) to the backend
 app.post('/users_profiles', (req, res) => {
   // let's call name, email and password the information sent by name, email and password inputs of the form
-  console.log("hello")
   const formData = {
     name: req.body.name,
     email: req.body.email,
@@ -48,7 +47,7 @@ app.post('/users_profiles', (req, res) => {
   console.log(`USER PROFILE REGISTERING BEFORE QUERY + ${formData.name}`)
 
   //put these information in the DB users table to create the new user
-  connection.query(`INSERT INTO users SET ?`, formData, (err) => {          // WE need to say formData to kw where to go searching the information
+  connection.query(`INSERT INTO user_profile SET ?`, formData, (err) => {          // WE need to say formData to kw where to go searching the information
     if(err){
       res.status(500).send('Error saving your profile')
     } else {
@@ -71,7 +70,7 @@ app.post('/authenticate', (req, res, next) => {
   };
   console.log('LOGIN BEFORE CONNEXION.QUERY')
   console.log(data.email)
-  connection.query(`SELECT * FROM users WHERE email = ? AND password = ?`, [data.email, data.password], (err, results) => {
+  connection.query(`SELECT * FROM user_profile WHERE email = ? AND password = ?`, [data.email, data.password], (err, results) => {
   // Check if email and password have been filled
     if(results){
       console.log(results)
@@ -163,7 +162,7 @@ app.get('/users_profiles/:email', protectedRoutes, (req, res) => {
     // GET THE EMAIL SENT THROUGH THE FORM
     const email = req.params.email;
 
-  connection.query('SELECT * FROM users WHERE email = ? ', email, (err, results) => {
+  connection.query('SELECT * FROM user_profile WHERE email = ? ', email, (err, results) => {
     console.log('in the SELECT of user page')
     if(err) {
       res.status(500).send('error fetching posts')
@@ -175,7 +174,7 @@ app.get('/users_profiles/:email', protectedRoutes, (req, res) => {
 
 //ROUTE DISPLAYING ALL THE INFORMATION ABOUT ALL THE USERS
 app.get('/users_profiles', (req, res) => {
-  connection.query('SELECT * FROM users', (err, results) => {
+  connection.query('SELECT * FROM user_profile', (err, results) => {
     if(err) {
       res.status(500).send('error fetching posts')
     } else {
@@ -185,18 +184,16 @@ app.get('/users_profiles', (req, res) => {
   })
 })
 
-//RELATIONS
-
-
+//UPDATE SCORE FOR USERS GAMES PLAYING
 app.put('/game-score', (req, res) => {
   data = {
     score: req.body.score,
     user: req.body.user_id
   }
 
-  connection.query(`UPDATE users SET city_score = ? WHERE user_id = ?`, [data.score, data.user], (err) => {
+  connection.query(`UPDATE user_profile SET city_score = ? WHERE user_id = ?`, [data.score, data.user], (err) => {
     if(err){
-      res.status(500).send('Error saving your post')
+      res.status(500).send(err)
     } else {
       res.sendStatus(200)
     }
