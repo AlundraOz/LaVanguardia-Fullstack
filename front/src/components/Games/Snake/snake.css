@@ -47,6 +47,13 @@
 
 }
 
+#snakePageContainer > p {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1em;
+  color: white;
+
+}
+
 #buttonContainer {
   position: absolute;
   justify-content: space-around;
@@ -227,7 +234,8 @@
     flex-direction: row;
     padding: 5px;
     box-sizing: content-box;
-    width: 97%
+    width: 97%;
+    position: relative;
 
 
 
@@ -253,9 +261,17 @@
   }
   #snakePageContainer > h1 {
     color: lightgrey;
-    padding-top: 2%;
+    padding-top: 1%;
     margin-bottom: 0%;
-    font-size: 1em;
+    font-size: 0.8em;
+  }
+
+  #snakePageContainer > p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.5em;
+    color: white;
+    position: absolute;
+    left: 200px;
   }
 
   .game-area {
@@ -282,7 +298,7 @@
     box-shadow: 0px -48px 0px 900px rgba(0,0,0,0.69);
     border: 4px solid white;
     color: white;
-    padding: 60px 20px 60px 20px;
+    padding: 40px 20px 40px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
