@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MyProvider from './context/MyProvider';
 import './App.css';
 import Navbar from './components/Navbar/navbar';
 import Footer from './components/Footer/Footer'
@@ -16,7 +17,10 @@ import LavanguardiaPage from './components/LavanguardiaPage/LavanguardiaPage';
 import IndexSnake from './components/Games/Snake/indexSnake';
 import OneToFifty from './components/Games/OneToFifty/OneToFifty';
 import MemoryGame from './components/Games/MemoryGame/MemoryGame';
-import TestUser from './components/TestUser/TestUser'
+import SignUp from './components/User/SignUp';
+import LogIn from './components/User/Login';
+
+
 const UserExample = {
   name: "Pepito ScrumMaster",
   img: "https://avatars3.githubusercontent.com/u/59797566?s=460&v=4",
@@ -24,73 +28,73 @@ const UserExample = {
   age: '28',
   points: 20
 };
-
 class App extends Component {
   state = {
     user: {},
     timesCliked: false,
-
   }
   simulateUserLogged = () => {
     this.setState({
       user: UserExample,
       timesCliked: true,
-
     })
   }
   userOff = () => {
     this.setState({
       user: {},
       timesCliked: false,
-
     })
   }
-
     render(){
       console.log('comprobación rutas', process.env)
     return (
-      <div className='App'>
-        <Navbar />
-        <Switch>
-        <Route exact path ='/'>
-        <LavanguardiaPage />
-        </Route>
-        <Route path='/cityplay'>
-        <AppCapitals/>
-        </Route>
-        <Route path='/geochallenge'>
-        <GeoChallenge />
-        </Route>
-        <Route path='/tacleclick'>
-        <BigBoard/>
-        </Route>
-        <Route path='/nonogram'>
-        <NonogramApp/>
-        </Route>
-        <Route path='/iframe'>
-        <Iframe/>
-        </Route>
-        <Route path='/carousel'>
-        <IframeCarousel/>
-        </Route>
-        <Route path='/games-section'>
-        <ButtonGames/>
-        </Route>
-        <Route path='/snake'>
-        <IndexSnake/>
-        </Route>
-        <Route path='/OneToFifty'>
-          <OneToFifty />
-        </Route>
-        <Route path='/MemoryGame'>
-          <MemoryGame/>
-        </Route>
-        <Route path='/test_users'>
-          <TestUser/>
-        </Route>
-        </Switch>
-        <Footer />
-      </div>
+      <MyProvider>
+        <div className='App'>
+          <Navbar />
+          <Switch>
+            <Route exact path ='/'>
+              <LavanguardiaPage />
+            </Route>
+            <Route path='/cityplay'>
+              <AppCapitals/>
+            </Route>
+            <Route path='/geochallenge'>
+              <GeoChallenge />
+            </Route>
+            <Route path='/tacleclick'>
+              <BigBoard/>
+            </Route>
+            <Route path='/nonogram'>
+              <NonogramApp/>
+            </Route>
+            <Route path='/iframe'>
+              <Iframe/>
+            </Route>
+            <Route path='/carousel'>
+              <IframeCarousel/>
+            </Route>
+            <Route path='/games-section'>
+              <ButtonGames/>
+            </Route>
+            <Route path='/snake'>
+              <IndexSnake/>
+            </Route>
+            <Route path='/OneToFifty'>
+              <OneToFifty />
+            </Route>
+            <Route path='/MemoryGame'>
+              <MemoryGame/>
+            </Route>
+            <Route path='/sign-up'>
+              <SignUp/>
+            </Route>
+            <Route path='/log-in'>
+              <LogIn/>
+            </Route>
+          </Switch>
+          <Footer />
+        </div>
+      </MyProvider>
     );
   }
 }
