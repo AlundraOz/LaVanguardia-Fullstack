@@ -140,6 +140,22 @@ app.post('/users_profiles', (req, res) => {
   })
 });
 
+//RELATIONS
+
+
+app.post('/game-score', (req, res) => {
+  const score= req.body.score
+  
+  connection.query(`INSERT INTO games SET score = ?`, score, (err) => {
+    if(err){
+      res.status(500).send('Error saving your post')
+    } else {
+      res.sendStatus(200)
+    }
+  })
+});
+
+
 app.listen(port,(err)=>{
     if (err) {
     throw new Error('Something bad happened...');

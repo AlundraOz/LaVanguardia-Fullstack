@@ -15,7 +15,6 @@ class MyProvider extends Component {
           user: user
         })
       }}>
-      //SIEMPRE
         {this.props.children}
       </MyContext.Provider>
     )
