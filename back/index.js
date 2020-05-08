@@ -10,7 +10,7 @@ const router = express.Router();
 const session = require('express-session')
 
 const port = 5000;
-var cors = require('cors') 
+var cors = require('cors')
 app.use(cors())
 
 // 1 CATCH THE SECRET KEY TO ALLOW THE APP TO START
@@ -37,7 +37,7 @@ app.get('/', function(req, res) {
 //ROUTE CALLED WHEN VALIDATING REGISTERING FORM
 
 // send information from the form (front) to the backend
-app.post('/users_profiles', (req, res) => {  
+app.post('/users_profiles', (req, res) => {
   // let's call name, email and password the information sent by name, email and password inputs of the form
   console.log("hello")
   const formData = {
@@ -70,7 +70,7 @@ app.post('/authenticate', (req, res, next) => {
     password: req.body.password
   };
   console.log('LOGIN BEFORE CONNEXION.QUERY')
-  console.log(data.email) 
+  console.log(data.email)
   connection.query(`SELECT * FROM users WHERE email = ? AND password = ?`, [data.email, data.password], (err, results) => {
   // Check if email and password have been filled
     if(results){
@@ -82,7 +82,7 @@ app.post('/authenticate', (req, res, next) => {
         // gives a token when signed in. Says the token to be valid during 24 hours (50 minutes)
       const token = jwt.sign(payload, app.get('secret_key'), {
         // MODIFY CONFIG.JS
-        expiresIn: 50  
+        expiresIn: 50
       });
       console.log('THAT WOOOORKS 1')
        //sends a json object that displays the token and a message that confirms that the login has been successfull (for the tests)
@@ -90,7 +90,7 @@ app.post('/authenticate', (req, res, next) => {
         results,
         message: 'Authentication successfull',
         token: token
-        
+
       });
       console.log('THAT WOOOORKS 2')
 
@@ -113,7 +113,7 @@ app.post('/authenticate', (req, res, next) => {
   });
 })
 
-      
+
   // app.get('/users_profiles/:email', (req, res) => {
   //     // Get the data sent
   //     const email = req.params.email;
@@ -131,7 +131,7 @@ app.post('/authenticate', (req, res, next) => {
 
 
 
-const protectedRoutes = express.Router(); 
+const protectedRoutes = express.Router();
 protectedRoutes.use((req, res, next) => {
   console.log('in protected Routes function')
   const data = {
@@ -140,8 +140,8 @@ protectedRoutes.use((req, res, next) => {
 
   // WE PASS THE ACCESS TOKEN PASSED THROUGH THE HEADERS WHEN SIGNING IN (line 90)
     const token = req.headers['access-token'];
-    if (token) {  
-      jwt.verify(token, app.get('data.password'), (err, decoded) => {      
+    if (token) {
+      jwt.verify(token, app.get('data.password'), (err, decoded) => {
         if (err) {
           return res.json({ message: 'Token not valid' });
         } else {
@@ -159,11 +159,11 @@ protectedRoutes.use((req, res, next) => {
 
 //ACCESS TO PERSONAL USER PROFILE PAGE
 app.get('/users_profiles/:email', protectedRoutes, (req, res) => {
-  
+
     // GET THE EMAIL SENT THROUGH THE FORM
     const email = req.params.email;
-  
-  connection.query('SELECT * FROM users WHERE email = ? ', email, (err, results) => {  
+
+  connection.query('SELECT * FROM users WHERE email = ? ', email, (err, results) => {
     console.log('in the SELECT of user page')
     if(err) {
       res.status(500).send('error fetching posts')
@@ -173,7 +173,7 @@ app.get('/users_profiles/:email', protectedRoutes, (req, res) => {
   })
 })
 
-//ROUTE DISPLAYING ALL THE INFORMATION ABOUT ALL THE USERS 
+//ROUTE DISPLAYING ALL THE INFORMATION ABOUT ALL THE USERS
 app.get('/users_profiles', (req, res) => {
   connection.query('SELECT * FROM users', (err, results) => {
     if(err) {
@@ -188,10 +188,13 @@ app.get('/users_profiles', (req, res) => {
 //RELATIONS
 
 
-app.post('/game-score', (req, res) => {
-  const score= req.body.score
-  
-  connection.query(`INSERT INTO games SET score = ?`, score, (err) => {
+app.put('/game-score', (req, res) => {
+  data = {
+    score: req.body.score,
+    user: req.body.user_id
+  }
+
+  connection.query(`UPDATE users SET city_score = ? WHERE user_id = ?`, [data.score, data.user], (err) => {
     if(err){
       res.status(500).send('Error saving your post')
     } else {
