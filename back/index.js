@@ -74,6 +74,7 @@ app.post('/authenticate', (req, res, next) => {
   connection.query(`SELECT * FROM users WHERE email = ? AND password = ?`, [data.email, data.password], (err, results) => {
   // Check if email and password have been filled
     if(results){
+      console.log(results)
       console.log('ENTER QUERY CONDITION TOKEN')
       const payload = {
         check:  true
@@ -83,23 +84,28 @@ app.post('/authenticate', (req, res, next) => {
         // MODIFY CONFIG.JS
         expiresIn: 50  
       });
+      console.log('THAT WOOOORKS 1')
        //sends a json object that displays the token and a message that confirms that the login has been successfull (for the tests)
       res.json({
+        results,
         message: 'Authentication successfull',
         token: token
+        
       });
+      console.log('THAT WOOOORKS 2')
 
-      // SESSION : is not used yet but could be usefull later
-       req.session.regenerate( ()=>{
-      //   req.session.login = true;
-      //   req.session.email = req.body.email;
 
-        console.log('ENTER SESSION SECTION')
-        console.log(data.email)
+      // // SESSION : is not used yet but could be usefull later
+      //  req.session.regenerate( ()=>{
+      // //   req.session.login = true;
+      // //   req.session.email = req.body.email;
 
-      //Redirect to the user_profile page of the user that is logging in
-        res.json(result)
-       })
+      //   console.log('ENTER SESSION SECTION')
+      //   console.log(data.email)
+
+      // //Redirect to the user_profile page of the user that is logging in
+      //   res.json(result)
+      //  })
       } else {
       res.render('/');
       console.log('TOKEN NOT ALLOWED')
