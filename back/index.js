@@ -8,7 +8,7 @@ const router = express.Router();
 const session = require('express-session')
 
 const port = 5000;
-//var cors = require('cors')
+//var cors = require('cors')  >> could be usefull later if users' status
 
 
 // 1 CATCH THE SECRET KEY TO ALLOW THE APP TO START
@@ -80,10 +80,10 @@ app.post('/authenticate', (req, res, next) => {
       const payload = {
         check:  true
        };
-        // gives a token when signed in. Says the token to be valid during 24 hours (1440 minutes)
+        // gives a token when signed in. Says the token to be valid during 24 hours (50 minutes)
       const token = jwt.sign(payload, app.get('secret_key'), {
         // MODIFY CONFIG.JS
-        expiresIn: 50  // !!! "5" is for testing, changing it to 1440 
+        expiresIn: 50  
       });
        //sends a json object that displays the token and a message that confirms that the login has been successfull (for the tests)
       res.json({
@@ -91,7 +91,7 @@ app.post('/authenticate', (req, res, next) => {
         token: token
       });
 
-      // *** SESSION : pass the login of the session to true, keeping the user email >> WHY DO WE NEED IT EXACTLY
+      // SESSION : is not used yet but could be usefull later
        req.session.regenerate( ()=>{
       //   req.session.login = true;
       //   req.session.email = req.body.email;
@@ -143,7 +143,7 @@ app.get('/users_profiles/:email', protectedRoutes, (req, res) => {
     // GET THE EMAIL SENT THROUGH THE FORM
     const email = req.params.email;
   
-  connection.query('SELECT * FROM users WHERE email = ? ', email, (err, results) => {  //** SEEMS NOT WORKING */
+  connection.query('SELECT * FROM users WHERE email = ? ', email, (err, results) => {  
     console.log('in the SELECT of user page')
     if(err) {
       res.status(500).send('error fetching posts')
@@ -153,7 +153,7 @@ app.get('/users_profiles/:email', protectedRoutes, (req, res) => {
   })
 })
 
-//ROUTE DISPLAYING ALL THE INFORMATION ABOUT ALL THE USERS  >>>> WORKS FINE
+//ROUTE DISPLAYING ALL THE INFORMATION ABOUT ALL THE USERS 
 app.get('/users_profiles', (req, res) => {
   connection.query('SELECT * FROM users', (err, results) => {
     if(err) {
