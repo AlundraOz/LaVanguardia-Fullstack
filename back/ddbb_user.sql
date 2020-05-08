@@ -6,6 +6,7 @@ CREATE TABLE `users` (
   `email` varchar(100),
   `password` varchar(270)
 );
+
 use users;
 INSERT INTO
 ​
