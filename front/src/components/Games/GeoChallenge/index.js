@@ -170,7 +170,8 @@ class GeoChallenge extends Component {
     } else {
       this.setState({
         contentMap: "hidden",
-        contentEnd: "notHidden"
+        contentEnd: "notHidden",
+        finishGame: true
       })
     }
   }
@@ -180,7 +181,13 @@ class GeoChallenge extends Component {
   }
 
   tryAgain = event => {
-  window.location.reload();
+  this.setState({
+    contentMap: "notHidden",
+    contentEnd: "hidden",
+    finishGame: false,
+    correctAnswers: 0,
+    totalAnswers: 0,
+  })
 }
 
   render() {
