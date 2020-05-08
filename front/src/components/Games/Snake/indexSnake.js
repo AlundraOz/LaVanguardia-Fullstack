@@ -20,6 +20,7 @@ const initialState = {
   gameStarted: false,
   gameEnded: true,
   food: getRandomCoordinates(),
+  points: 0,
   speed: 200,
   direction: 'RIGHT',
   snakeDots: [
@@ -142,7 +143,8 @@ class IndexSnake extends Component {
         this.setState({
           speed: this.state.speed - 10,
           food: getRandomCoordinates(),
-          interval: intervalFunction(this.moveSnake, this.state.speed)
+          interval: intervalFunction(this.moveSnake, this.state.speed),
+          points: this.state.points +10
         })
       }
       this.enlargeSnake();
@@ -176,6 +178,8 @@ class IndexSnake extends Component {
         <InstructionGames  instructionText="Selecciona el pin correspondiente con la bandera que aparece, si encadenas aciertos, tus puntuaciones se van acumulando (50,100,150…) , si fallas restas 25 y empiezas desde 50 puntos otra vez." />
         <CloseButton />
         <h1 style={{ color: 'lightgrey', paddingTop: '15px', marginBottom: '15px' }}>Juega al SNAKE</h1>
+          <p className="">Points: {this.state.points}</p>
+
 
         <div className="snakeGameContainer">
         {this.state.gameStarted != true
