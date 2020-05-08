@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MyContext } from '../../context/MyProvider';
-
+import {Link} from 'react-router-dom';
 
 var response = "";
 
@@ -41,6 +41,9 @@ const LogIn = () => {
   return (
     <div >
       <h1>THINGS TO DO</h1>
+      <Link to='games-section' >
+          <button className='center-button'> MÁS JUEGOS </button>
+      </Link>
       <p>
         This will be my place to take notes about my things To Do in the future.
     </p>

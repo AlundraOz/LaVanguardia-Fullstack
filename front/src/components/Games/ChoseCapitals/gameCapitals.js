@@ -14,7 +14,7 @@ import titleCity from './img/logo-02.png'
 import backgroundCity from './img/fondo_capitales.png'
 
 export default class GameCapitals extends Component {
-    static contextType = MyContext
+    //static contextType = MyContext
     state = {
         countries: [], //save the data api that is going to change by the way the play develop
         gameStatus: 'startGame', //there is 3 states of the game to show the diferent elements in this game(start/playing/end)
@@ -45,7 +45,8 @@ export default class GameCapitals extends Component {
             //prepare the counter
             if (this.state.seconds <= 0) {
                 //when it's finished
-                this.context.changeScore(this.state.score)
+
+                //this.context.changeScore(this.state.score)
                 this.setState({ gameStatus: 'gameOver' })
                 //finish counter
                 clearTimeout(timerId);
@@ -88,6 +89,20 @@ export default class GameCapitals extends Component {
         }
     }
     tryAgain = () => {
+        fetch('http://localhost:5000/game-score', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.parse(this.state.score)
+    }).then(res => {
+      if(res.status === 200 ){
+          console.log('saved score')
+
+    }else{
+        console.log('no hace naa')
+    }
+    })
         //in the last state of the game 'end' when we click again  we call the function for playingGame status and change the state for showing this part and reload the default state
         this.getCountry()
         this.setState({
@@ -125,7 +140,7 @@ export default class GameCapitals extends Component {
             </div>),
             gameOver: () => (<div className='playingGame'>
                 <Info style='gameover' text='GAME OVER' />
-                <Info style='score' text={'SCORE : ' + this.state.score} />
+                <Info style='score'  text={'SCORE : ' + this.state.score} />
                 {/* <Links style='shered-link' /> */}
                 <Button style='play-again' action={this.tryAgain} text='Play Again' />
                 {/* <Exit style='back-menu' text='Exit Game' /> */}
