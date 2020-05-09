@@ -18,3 +18,24 @@ export const filterData=(data)=>{
     console.log(dataFiltered)
     return dataFiltered
   }
+
+export const SaveScore=(score, user_id)=>{
+    /* let score = this.state.score;
+      let user_id = user_id */
+      //console.log(this.context.state.user.results[0].user_id);
+        fetch('http://localhost:5000/game-score', {
+      method: 'PUT',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({ score , user_id })
+
+    }).then(res => {
+        if(res.status === 200 ){
+            console.log('saved score')
+
+        }else{
+            console.log('no hace naa')
+          }
+        })
+}

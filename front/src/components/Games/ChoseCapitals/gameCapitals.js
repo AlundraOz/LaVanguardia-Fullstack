@@ -11,10 +11,11 @@ import { Link } from 'react-router-dom';
 import InstructionGames from '../../SharedButtons/InstructionGames';
 import CloseButton from '../../SharedButtons/CloseButton';
 import titleCity from './img/logo-02.png'
-import backgroundCity from './img/fondo_capitales.png'
+import backgroundCity from './img/fondo_capitales.png';
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions'
 
 export default class GameCapitals extends Component {
-    //static contextType = MyContext
+    static contextType = MyContext
     state = {
         countries: [], //save the data api that is going to change by the way the play develop
         gameStatus: 'startGame', //there is 3 states of the game to show the diferent elements in this game(start/playing/end)
@@ -45,6 +46,7 @@ export default class GameCapitals extends Component {
             //prepare the counter
             if (this.state.seconds <= 0) {
                 //when it's finished
+
 
                 //this.context.changeScore(this.state.score)
                 this.setState({ gameStatus: 'gameOver' })
@@ -89,20 +91,25 @@ export default class GameCapitals extends Component {
         }
     }
     tryAgain = () => {
+        SaveScore(this.state.score, this.context.state.user.results[0].user_id)
+      /* let score = this.state.score;
+      let user_id = this.context.state.user.results[0].user_id
+      console.log(this.context.state.user.results[0].user_id);
         fetch('http://localhost:5000/game-score', {
-      method: 'POST',
+      method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-      body: JSON.parse(this.state.score)
-    }).then(res => {
-      if(res.status === 200 ){
-          console.log('saved score')
+      body: JSON.stringify({ score , user_id })
 
-    }else{
-        console.log('no hace naa')
-    }
-    })
+    }).then(res => {
+        if(res.status === 200 ){
+            console.log('saved score')
+
+        }else{
+            console.log('no hace naa')
+          }
+        }) */
         //in the last state of the game 'end' when we click again  we call the function for playingGame status and change the state for showing this part and reload the default state
         this.getCountry()
         this.setState({
@@ -111,7 +118,9 @@ export default class GameCapitals extends Component {
             gameStatus: 'startGame',
             score: 0
         })
-    }
+
+      }
+
     render() {
         /*OBJECT WITH THE 3 STATES OF THE GAME THAT WE ARE CHANGING DURING THE FUNCTIONS */
         const gameStatus = {
