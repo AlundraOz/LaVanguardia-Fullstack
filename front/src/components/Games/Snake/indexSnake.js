@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import Snake from './snake';
 import Food from './food';
+import { MyContext } from '../../../context/MyProvider';
 import './snake.css'
 import InstructionGames from '../../SharedButtons/InstructionGames';
 import CloseButton from '../../SharedButtons/CloseButton';
 import pointer from './images/pointer.png';
 import backgroundBig from './images/backgroundBig.png';
 import backgroundSmall from './images/backgroundSmall.png';
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions'
 
 
 const getRandomCoordinates = () => {
@@ -20,6 +22,7 @@ const initialState = {
   gameStarted: false,
   gameEnded: true,
   food: getRandomCoordinates(),
+  points: 0,
   speed: 200,
   direction: 'RIGHT',
   snakeDots: [
@@ -32,6 +35,7 @@ const intervalFunction = (move, speed) => {
   return (setInterval(move, speed))
 }
 class IndexSnake extends Component {
+  static contextType = MyContext
   state = initialState;
   onClickStart = (e) => {
     //If everything is false do the set Interval + count + 1. Else stop the game + alert with counter
@@ -142,7 +146,8 @@ class IndexSnake extends Component {
         this.setState({
           speed: this.state.speed - 10,
           food: getRandomCoordinates(),
-          interval: intervalFunction(this.moveSnake, this.state.speed)
+          interval: intervalFunction(this.moveSnake, this.state.speed),
+          points: this.state.points +10
         })
       }
       this.enlargeSnake();
@@ -164,6 +169,7 @@ class IndexSnake extends Component {
      }
    }  */
   onGameOver() {
+    SaveScore(this.state.points, this.context.state.user.results[0].user_id, "snake_score")
     clearInterval(this.state.interval)
     this.setState(initialState)
   }
@@ -176,6 +182,8 @@ class IndexSnake extends Component {
         <InstructionGames  instructionText="Selecciona el pin correspondiente con la bandera que aparece, si encadenas aciertos, tus puntuaciones se van acumulando (50,100,150…) , si fallas restas 25 y empiezas desde 50 puntos otra vez." />
         <CloseButton />
         <h1 style={{ color: 'lightgrey', paddingTop: '15px', marginBottom: '15px' }}>Juega al SNAKE</h1>
+          <p className="">Points: {this.state.points}</p>
+
 
         <div className="snakeGameContainer">
         {this.state.gameStarted != true

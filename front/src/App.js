@@ -17,6 +17,7 @@ import LavanguardiaPage from './components/LavanguardiaPage/LavanguardiaPage';
 import IndexSnake from './components/Games/Snake/indexSnake';
 import OneToFifty from './components/Games/OneToFifty/OneToFifty';
 import MemoryGame from './components/Games/MemoryGame/MemoryGame';
+import Access from './components/Access/Access';
 import SignUp from './components/User/SignUp';
 import LogIn from './components/User/Login';
 
@@ -91,6 +92,9 @@ class App extends Component {
             <Route path='/log-in'>
               <LogIn/>
             </Route>
+            <Route path ='/Access'>
+          <Access/>
+        </Route>
           </Switch>
           <Footer />
         </div>

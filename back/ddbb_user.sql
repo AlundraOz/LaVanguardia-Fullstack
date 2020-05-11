@@ -1,10 +1,17 @@
-CREATE DATABASE test_users;
-USE test_users;
-CREATE TABLE `users` (
+CREATE DATABASE games_database;
+USE games_database;
+CREATE TABLE `user_profile` (
   `user_id` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(100),
-  `email` varchar(100),
-  `password` varchar(270)
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(270) NOT NULL,
+  `city_score` int(100),
+  `geo_score` int(100),
+  `football_score` int(100),
+  `nonogram_score` int(100),
+  `memory_score` int(100),
+  `snake_score` int(100),
+  `fifty_score` int(100)
 );
 
 use users;
@@ -19,9 +26,6 @@ CREATE TABLE `games` (
   `game_id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `score` int
-);
-​
-ALTER TABLE `user_games` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-​
+) ​
 ALTER TABLE `user_games` ADD FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`);
-
+ */

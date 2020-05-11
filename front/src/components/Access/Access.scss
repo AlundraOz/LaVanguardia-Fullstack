@@ -1,0 +1,36 @@
+.container-fluid{
+    padding: 0 !important;
+}
+
+.Access {
+
+    & .justifyCenter{
+        display: flex;
+        justify-content: center;
+    }
+
+    & .imgLogin {
+        background-image: url('./imgLogin.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+    }
+
+    & .menuDisplay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    & .formDisplay {
+        height: 85vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -10,7 +10,7 @@ const router = express.Router();
 const session = require('express-session')
 
 const port = 5000;
-var cors = require('cors') 
+var cors = require('cors')
 app.use(cors())
 
 // 1 CATCH THE SECRET KEY TO ALLOW THE APP TO START
@@ -37,9 +37,8 @@ app.get('/', function(req, res) {
 //ROUTE CALLED WHEN VALIDATING REGISTERING FORM
 
 // send information from the form (front) to the backend
-app.post('/users_profiles', (req, res) => {  
+app.post('/users_profiles', (req, res) => {
   // let's call name, email and password the information sent by name, email and password inputs of the form
-  console.log("hello")
   const formData = {
     name: req.body.name,
     email: req.body.email,
@@ -48,7 +47,7 @@ app.post('/users_profiles', (req, res) => {
   console.log(`USER PROFILE REGISTERING BEFORE QUERY + ${formData.name}`)
 
   //put these information in the DB users table to create the new user
-  connection.query(`INSERT INTO users SET ?`, formData, (err) => {          // WE need to say formData to kw where to go searching the information
+  connection.query(`INSERT INTO user_profile SET ?`, formData, (err) => {          // WE need to say formData to kw where to go searching the information
     if(err){
       res.status(500).send('Error saving your profile')
     } else {
@@ -70,8 +69,8 @@ app.post('/authenticate', (req, res, next) => {
     password: req.body.password
   };
   console.log('LOGIN BEFORE CONNEXION.QUERY')
-  console.log(data.email) 
-  connection.query(`SELECT * FROM users WHERE email = ? AND password = ?`, [data.email, data.password], (err, results) => {
+  console.log(data.email)
+  connection.query(`SELECT * FROM user_profile WHERE email = ? AND password = ?`, [data.email, data.password], (err, results) => {
   // Check if email and password have been filled
     if(results){
       console.log(results)
@@ -82,7 +81,7 @@ app.post('/authenticate', (req, res, next) => {
         // gives a token when signed in. Says the token to be valid during 24 hours (50 minutes)
       const token = jwt.sign(payload, app.get('secret_key'), {
         // MODIFY CONFIG.JS
-        expiresIn: 50  
+        expiresIn: 50
       });
       console.log('THAT WOOOORKS 1')
        //sends a json object that displays the token and a message that confirms that the login has been successfull (for the tests)
@@ -90,7 +89,7 @@ app.post('/authenticate', (req, res, next) => {
         results,
         message: 'Authentication successfull',
         token: token
-        
+
       });
       console.log('THAT WOOOORKS 2')
 
@@ -113,7 +112,7 @@ app.post('/authenticate', (req, res, next) => {
   });
 })
 
-      
+
   // app.get('/users_profiles/:email', (req, res) => {
   //     // Get the data sent
   //     const email = req.params.email;
@@ -131,7 +130,7 @@ app.post('/authenticate', (req, res, next) => {
 
 
 
-const protectedRoutes = express.Router(); 
+const protectedRoutes = express.Router();
 protectedRoutes.use((req, res, next) => {
   console.log('in protected Routes function')
   const data = {
@@ -140,8 +139,8 @@ protectedRoutes.use((req, res, next) => {
 
   // WE PASS THE ACCESS TOKEN PASSED THROUGH THE HEADERS WHEN SIGNING IN (line 90)
     const token = req.headers['access-token'];
-    if (token) {  
-      jwt.verify(token, app.get('data.password'), (err, decoded) => {      
+    if (token) {
+      jwt.verify(token, app.get('data.password'), (err, decoded) => {
         if (err) {
           return res.json({ message: 'Token not valid' });
         } else {
@@ -159,11 +158,11 @@ protectedRoutes.use((req, res, next) => {
 
 //ACCESS TO PERSONAL USER PROFILE PAGE
 app.get('/users_profiles/:email', protectedRoutes, (req, res) => {
-  
+
     // GET THE EMAIL SENT THROUGH THE FORM
     const email = req.params.email;
-  
-  connection.query('SELECT * FROM users WHERE email = ? ', email, (err, results) => {  
+
+  connection.query('SELECT * FROM user_profile WHERE email = ? ', email, (err, results) => {
     console.log('in the SELECT of user page')
     if(err) {
       res.status(500).send('error fetching posts')
@@ -173,9 +172,9 @@ app.get('/users_profiles/:email', protectedRoutes, (req, res) => {
   })
 })
 
-//ROUTE DISPLAYING ALL THE INFORMATION ABOUT ALL THE USERS 
+//ROUTE DISPLAYING ALL THE INFORMATION ABOUT ALL THE USERS
 app.get('/users_profiles', (req, res) => {
-  connection.query('SELECT * FROM users', (err, results) => {
+  connection.query('SELECT * FROM user_profile', (err, results) => {
     if(err) {
       res.status(500).send('error fetching posts')
     } else {
@@ -184,6 +183,25 @@ app.get('/users_profiles', (req, res) => {
     }
   })
 })
+
+//UPDATE SCORE FOR USERS GAMES PLAYING
+app.put('/game-score/:name_game', (req, res) => {
+  data = {
+    score: req.body.score,
+    user: req.body.user_id,
+  }
+  const name_game = req.params.name_game;
+
+
+  connection.query(`UPDATE user_profile SET ${name_game} = ? WHERE user_id = ?`, [data.score, data.user, name_game], (err) => {
+    if(err){
+      res.status(500).send(err)
+    } else {
+      res.sendStatus(200)
+    }
+  })
+});
+
 
 app.listen(port,(err)=>{
     if (err) {
