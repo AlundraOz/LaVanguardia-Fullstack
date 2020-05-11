@@ -202,6 +202,19 @@ app.put('/game-score/:name_game', (req, res) => {
   })
 });
 
+//CREATE RANKING GAME
+app.get('/ranking/:game_score', (req, res) => {
+  const game_score=req.params.game_score
+
+  connection.query(`SELECT name, ${game_score} FROM user_profile ORDER BY ${game_score} DESC LIMIT 3`, (err, results) => {
+    if(err) {
+      res.status(500).send(err)
+    } else {
+      console.log('ROUTE ALL USERS PROFILES WORKING')
+      res.json(results)
+    }
+  })
+})
 
 app.listen(port,(err)=>{
     if (err) {
