@@ -185,13 +185,15 @@ app.get('/users_profiles', (req, res) => {
 })
 
 //UPDATE SCORE FOR USERS GAMES PLAYING
-app.put('/game-score', (req, res) => {
+app.put('/game-score/:name_game', (req, res) => {
   data = {
     score: req.body.score,
-    user: req.body.user_id
+    user: req.body.user_id,
   }
+  const name_game = req.params.name_game;
 
-  connection.query(`UPDATE user_profile SET city_score = ? WHERE user_id = ?`, [data.score, data.user], (err) => {
+
+  connection.query(`UPDATE user_profile SET ${name_game} = ? WHERE user_id = ?`, [data.score, data.user, name_game], (err) => {
     if(err){
       res.status(500).send(err)
     } else {
