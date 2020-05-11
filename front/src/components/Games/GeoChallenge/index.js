@@ -199,8 +199,6 @@ class GeoChallenge extends Component {
   render() {
     const bounds = Leaflet.latLngBounds(this.state.bounds);
     return (
-    <MyContext.Consumer>
-      {(context)=>(
 
       <div className='containerGeo'>
         <InstructionGames  instructionText="Selecciona el pin correspondiente con la bandera que aparece, si encadenas aciertos, tus puntuaciones se van acumulando (50,100,150…) , si fallas restas 25 y empiezas desde 50 puntos otra vez." />
@@ -292,13 +290,10 @@ class GeoChallenge extends Component {
                 </div>
                 </div>
               </div>
-
-
+              
         </div>
-
       </div>
-    )}
-      </MyContext.Consumer>
+
     )
   }
 }

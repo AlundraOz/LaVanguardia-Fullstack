@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import Snake from './snake';
 import Food from './food';
+import { MyContext } from '../../../context/MyProvider';
 import './snake.css'
 import InstructionGames from '../../SharedButtons/InstructionGames';
 import CloseButton from '../../SharedButtons/CloseButton';
 import pointer from './images/pointer.png';
 import backgroundBig from './images/backgroundBig.png';
 import backgroundSmall from './images/backgroundSmall.png';
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions'
 
 
 const getRandomCoordinates = () => {
@@ -33,6 +35,7 @@ const intervalFunction = (move, speed) => {
   return (setInterval(move, speed))
 }
 class IndexSnake extends Component {
+  static contextType = MyContext
   state = initialState;
   onClickStart = (e) => {
     //If everything is false do the set Interval + count + 1. Else stop the game + alert with counter
@@ -166,6 +169,7 @@ class IndexSnake extends Component {
      }
    }  */
   onGameOver() {
+    SaveScore(this.state.points, this.context.state.user.results[0].user_id, "snake_score")
     clearInterval(this.state.interval)
     this.setState(initialState)
   }

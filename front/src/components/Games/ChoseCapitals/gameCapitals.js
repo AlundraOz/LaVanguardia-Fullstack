@@ -91,7 +91,7 @@ export default class GameCapitals extends Component {
         }
     }
     tryAgain = () => {
-        SaveScore(this.state.score, this.context.state.user.results[0].user_id)
+        SaveScore(this.state.score, this.context.state.user.results[0].user_id, "city_score")
       /* let score = this.state.score;
       let user_id = this.context.state.user.results[0].user_id
       console.log(this.context.state.user.results[0].user_id);
