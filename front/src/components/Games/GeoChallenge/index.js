@@ -12,6 +12,7 @@ import CloseButton from '../../SharedButtons/CloseButton';
 import { SaveScore } from '../../../sheredFunctions/SheredFunctions'
 
 
+
 const Leaflet = window.L;
 console.log(Leaflet)
 
