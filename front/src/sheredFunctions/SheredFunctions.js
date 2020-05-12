@@ -12,18 +12,18 @@ export const Shuffle=(a)=>{
 
 export const filterData=(data)=>{
     let dataFiltered=data.filter((country)=>{
-      
+
       return country.capital !== "";
     })
     console.log(dataFiltered)
     return dataFiltered
   }
 
-export const SaveScore=(score, user_id)=>{
+export const SaveScore=(score, user_id, name_game)=>{
     /* let score = this.state.score;
       let user_id = user_id */
       //console.log(this.context.state.user.results[0].user_id);
-        fetch('http://localhost:5000/game-score', {
+        fetch(`http://localhost:5000/game-score/${name_game}`, {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json'

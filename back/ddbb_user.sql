@@ -13,7 +13,8 @@ CREATE TABLE `user_profile` (
   `snake_score` int(100),
   `fifty_score` int(100)
 );
-/* use users;
+
+use users;
 INSERT INTO
 ​
 CREATE TABLE `user_games` (

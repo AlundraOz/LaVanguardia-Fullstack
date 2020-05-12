@@ -8,8 +8,11 @@ import './Button.css';
 import backgroundFootball from './images/FOOTBAL-03@2x.png'
 import gameTitle from './images/gameTitle.png'
 import InstructionGames from '../../SharedButtons/InstructionGames';
-import CloseButton from '../../SharedButtons/CloseButton'
-import './../../SharedButtons/iframeButtons'
+import CloseButton from '../../SharedButtons/CloseButton';
+import './../../SharedButtons/iframeButtons';
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions';
+import { MyContext } from '../../../context/MyProvider';
+
 
 
 const initialState = () => {
@@ -31,6 +34,7 @@ const initialState = () => {
 }
 
 export default class BigBoard extends React.Component {
+  static contextType = MyContext
   state = initialState()
   delay = 2000;
   timer = () => {setTimeout(this.onEndTimer, this.delay)}
@@ -77,10 +81,12 @@ export default class BigBoard extends React.Component {
         logoClassName: "logoDisplayed",
         counter: this.state.counter + 1
       })
+
       // HERE THE DELAY BECOMES SHORTER
       this.delay = this.delay - 50;
       this.onClickStart()
     } else {
+      SaveScore(this.state.counter, this.context.state.user.results[0].user_id, "football_score")
       this.setState({
         gameEnded: true
       })

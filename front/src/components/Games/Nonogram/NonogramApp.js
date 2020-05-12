@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './NonogramApp.scss';
 import {
@@ -16,9 +16,14 @@ import {
 import InstructionNonogram from './InstructionNonogram';
 import CloseButtonNonogram from './CloseButtonNonogram';
 import panda from './panda.png';
-import confetti from '../../../confetti'
+import confetti from '../../../confetti';
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions';
+import { MyContext } from '../../../context/MyProvider';
 
 export default function NonogramApp() {
+
+  const context = useContext(MyContext);
+  
   // ---STATES---
   const [solutionGame, changeSolutionGame] = useState({
     // Here will be the solution (0 and 1) generate randomly
@@ -40,6 +45,9 @@ export default function NonogramApp() {
       [0, 0, 0, 0, 0]
     ]
   });
+
+  const [level, setLevel]=useState()
+  const [score, setScore]= useState(0);
   // ---END OF STATES---
 
   //--MODAL fin del juego
@@ -53,6 +61,7 @@ export default function NonogramApp() {
 
   //Change level dropdown
   function changeLevel(item) {
+    setLevel(item);
     changeSolutionUser({ grid: Array(item).fill(0).map(x => Array(item).fill(0)) });
     changeSolutionGame({ grid: Array(item).fill(0).map(x => Array(item).fill(0).map(e => Math.round(Math.random()))) });
   }
@@ -77,6 +86,9 @@ export default function NonogramApp() {
   let compareSolution = () => {
     let solutionUserWithout2 = solutionUser.grid.map(row => row.map(item => item !== 1 ? 0 : 1))
     if (JSON.stringify(solutionGame.grid) === JSON.stringify(solutionUserWithout2)) {
+      //Calculate score
+      setScore(level*5);
+      SaveScore(score, context.state.user.results[0].user_id, "nonogram_score")
       // changeWinGame(true);
       setModal(!modal)
       confetti.start()
@@ -238,7 +250,7 @@ export default function NonogramApp() {
               </tbody>
             </table>
             <div className="buttons">
-              <Button className="restart_button" color="primary" onClick={() => window.location.reload()}>Restart!</Button>
+              <Button className="restart_button" color="primary" onClick={() => changeLevel(5)}>Restart!</Button>
               <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                 <DropdownToggle caret className="selector_button" >
                   Selecciona nivel
@@ -280,7 +292,7 @@ export default function NonogramApp() {
               </tbody>
             </table>
             <div className="buttons">
-              <Button className="restart_button" color="primary" onClick={() => window.location.reload()}>Restart!</Button>
+              <Button className="restart_button" color="primary" onClick={() => changeLevel(5)}>Restart!</Button>
               <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                 <DropdownToggle caret className="selector_button" >
                   Selecciona nivel

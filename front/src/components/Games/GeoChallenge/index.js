@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import countriesDB from 'country-data'; // This library is cool but doesn't have coordinates
+import { MyContext } from '../../../context/MyProvider';
 import coordinates from './coordinates'; // array of coordintaes by country
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 import './geoChallenge.css'
@@ -7,7 +8,10 @@ import { Link } from 'react-router-dom';
 import Flag from 'lyef-flags';
 import title from './geoChallengeTitle.png';
 import InstructionGames from '../../SharedButtons/InstructionGames';
-import CloseButton from '../../SharedButtons/CloseButton'
+import CloseButton from '../../SharedButtons/CloseButton';
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions'
+
+
 
 const Leaflet = window.L;
 console.log(Leaflet)
@@ -24,6 +28,8 @@ const sanitizeCountries = () => {
 const countries = sanitizeCountries();
 
 class GeoChallenge extends Component {
+  static contextType = MyContext
+
 
   state = {
     options: [],
@@ -181,6 +187,7 @@ class GeoChallenge extends Component {
   }
 
   tryAgain = event => {
+    SaveScore(this.state.correctAnswers, this.context.state.user.results[0].user_id, "geo_score")
   this.setState({
     contentMap: "notHidden",
     contentEnd: "hidden",
@@ -193,11 +200,13 @@ class GeoChallenge extends Component {
   render() {
     const bounds = Leaflet.latLngBounds(this.state.bounds);
     return (
+
       <div className='containerGeo'>
         <InstructionGames  instructionText="Selecciona el pin correspondiente con la bandera que aparece, si encadenas aciertos, tus puntuaciones se van acumulando (50,100,150…) , si fallas restas 25 y empiezas desde 50 puntos otra vez." />
         <CloseButton />
-
         <div>
+
+
             <div className={`mapContent ${this.state.contentMap}`}>
               <div className="containerInstruction">
                 {
@@ -282,10 +291,10 @@ class GeoChallenge extends Component {
                 </div>
                 </div>
               </div>
-
-
+              
         </div>
       </div>
+
     )
   }
 }

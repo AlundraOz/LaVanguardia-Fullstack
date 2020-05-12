@@ -5,6 +5,8 @@ import Header from './Header';
 import construirBaraja from './utils/construirBaraja';
 import InstructionGames from '../../SharedButtons/InstructionGames';
 import CloseButton from '../../SharedButtons/CloseButton';
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions';
+import { MyContext } from '../../../context/MyProvider';
 
 //import useWindowDimensions from './windowHandler'
 
@@ -20,10 +22,12 @@ const initialState = () => {
     itsComparing: false,
     tryes: 0,
     winner: false,
+    score: 0,
   };
 }
 
 class MemoryGame extends React.Component {
+  static contextType = MyContext
   constructor(props) {
     super(props);
     this.state = initialState()
@@ -83,12 +87,14 @@ class MemoryGame extends React.Component {
           return {...card, wasGuessed: true}
         })
       }
+      const score = Math.round(10 / this.props.tryes * 10)
       this.verifyIfWinner(deck);
       this.setState({
         selectedCouple :[],
         deck,
         itsComparing: false,
-        tryes: this.state.tryes + 1
+        tryes: this.state.tryes + 1,
+        score
       })
     }, 1000)
   }
@@ -96,10 +102,11 @@ class MemoryGame extends React.Component {
 //method to verify if there is a winner
   verifyIfWinner(deck) {
     if (deck.filter((card) => !card.wasGuessed).length === 0) {
-    this.setState({
-        winner: true
+      SaveScore(this.state.score, this.context.state.user.results[0].user_id, "memory_score")
+      this.setState({
+          winner: true
       });
-      }
+    }
   }
 
   //method to reset the game
