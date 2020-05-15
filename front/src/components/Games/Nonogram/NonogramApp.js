@@ -23,7 +23,7 @@ import { MyContext } from '../../../context/MyProvider';
 export default function NonogramApp() {
 
   const context = useContext(MyContext);
-  
+
   // ---STATES---
   const [solutionGame, changeSolutionGame] = useState({
     // Here will be the solution (0 and 1) generate randomly
@@ -226,7 +226,7 @@ export default function NonogramApp() {
                 Has ganado el juego! ¿Quieres intentar otra partida?
                 </ModalBody>
               <ModalFooter>
-                <Button color="primary" onClick={() => window.location.reload()}>Vamos allá</Button>{' '}
+                <Button color="primary" onClick={() => changeLevel(5)}>Vamos allá</Button>{' '}
               </ModalFooter>
             </Modal>
 
@@ -271,7 +271,7 @@ export default function NonogramApp() {
           :
 
           <div>
-            
+
             <table className="center">
               <tbody>
                 <tr>
@@ -311,7 +311,7 @@ export default function NonogramApp() {
           </div>
         }
         </div>
-       
+
       </div>
     </div>
 
