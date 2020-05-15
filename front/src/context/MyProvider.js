@@ -15,10 +15,6 @@ class MyProvider extends Component {
           user: user
         })
       }}>
-<<<<<<< HEAD
-      {/*SIEMPRE*/}
-=======
->>>>>>> a590da9f6e472f751cf8f7e0249fcc65214a8bc7
         {this.props.children}
       </MyContext.Provider>
     )
