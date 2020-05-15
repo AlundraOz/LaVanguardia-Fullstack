@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import shortId from 'shortid';
+
 const Ranking=({game_score})=>{
     const [ranking, setRanking]= useState()
 
