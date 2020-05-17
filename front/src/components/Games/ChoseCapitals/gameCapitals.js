@@ -46,7 +46,9 @@ export default class GameCapitals extends Component {
             //prepare the counter
             if (this.state.seconds <= 0) {
                 //when it's finished
-
+                if(this.context.state.user.results[0].user_id){
+                    SaveScore(this.state.score, this.context.state.user.results[0].user_id, "city_score")
+                }
 
                 //this.context.changeScore(this.state.score)
                 this.setState({ gameStatus: 'gameOver' })
@@ -91,27 +93,10 @@ export default class GameCapitals extends Component {
         }
     }
     tryAgain = () => {
-        if(this.context.state.user.results[0].user_id){
+        /* if(this.context.state.user.results[0].user_id){
             SaveScore(this.state.score, this.context.state.user.results[0].user_id, "city_score")
-        }
-      /* let score = this.state.score;
-      let user_id = this.context.state.user.results[0].user_id
-      console.log(this.context.state.user.results[0].user_id);
-        fetch('http://localhost:5000/game-score', {
-      method: 'PUT',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      body: JSON.stringify({ score , user_id })
-
-    }).then(res => {
-        if(res.status === 200 ){
-            console.log('saved score')
-
-        }else{
-            console.log('no hace naa')
-          }
-        }) */
+        } */
+      
         //in the last state of the game 'end' when we click again  we call the function for playingGame status and change the state for showing this part and reload the default state
         this.getCountry()
         this.setState({

@@ -4,9 +4,7 @@ export const MyContext = React.createContext();
 
 class MyProvider extends Component {
   state = {
-    user:'',
-    score:'',
-    nameGame:''
+    user:''
   }
   render() {
     return (

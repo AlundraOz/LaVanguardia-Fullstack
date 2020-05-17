@@ -24,7 +24,7 @@ const Ranking=({gameName, scoreState})=>{
             //save score in ddbb 
         }else{
             //save score in context
-           // LogIn( 0 , scoreState, gameName)
+           
         }
            
     },[])
@@ -61,11 +61,12 @@ const Ranking=({gameName, scoreState})=>{
                         {state.user.results === undefined
                         ?
                         <div>
-                            <p>Tu puntuación final es {scoreState}. Si quieres guardarla, registrate<Link to='Access'>aquí</Link></p>
+                            <p>Tu puntuación final es {scoreState}. Para que tus puntuaciones se guarden y puedas competir con otros usuarios registrate <Link to='Access'>aquí</Link></p>
                         </div>
                         : 
                         <div>
-                            <p>dssdsd</p>
+
+                            <p>Estas en la posición X del ranking</p>
                         </div>}
                         </div>}
 

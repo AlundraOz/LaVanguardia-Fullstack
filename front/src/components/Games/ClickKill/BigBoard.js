@@ -88,10 +88,13 @@ export default class BigBoard extends React.Component {
       this.delay = this.delay - 50;
       this.onClickStart()
     } else {
+      if(this.context.state.user.results !== undefined){
       SaveScore(this.state.counter, this.context.state.user.results[0].user_id, "football_score")
+      }
       this.setState({
         gameEnded: true
       })
+
     }
     clearTimeout(this.timer);
   }
@@ -136,7 +139,7 @@ export default class BigBoard extends React.Component {
   render() {
     return (
       <Fragment>
-        <InstructionGames instructionText = "Machaca al equipo que más rábia te dé! Selecciona un equipo y pega encima de su escudo para sumar puntos, cuidado, si te equivocas pierdes." / >
+        <InstructionGames instructionText = "Machaca al equipo que más rábia te dé! Selecciona un equipo y pega encima de su escudo para sumar puntos, cuidado, si te equivocas pierdes." />
         <CloseButton/>
         <div id="superFootballBackground" >
           <img className='gameTitle' src={gameTitle} alt='title'></img>
@@ -203,9 +206,8 @@ export default class BigBoard extends React.Component {
                                   <br/><p className="changeTeamLink" onClick={this.changeTeam}>cambiar de equipo
                                        </p>
                                 </button>
-                                <button>
-                                   <Ranking gameName="football_score"/>
-                                </button>
+                                <Ranking gameName="football_score"/>
+                                
 
                               </div>
 
