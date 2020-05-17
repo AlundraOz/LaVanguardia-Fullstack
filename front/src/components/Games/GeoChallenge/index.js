@@ -292,7 +292,7 @@ class GeoChallenge extends Component {
                    onClick = {this.tryAgain}>
                    Volver a Jugar
                 </button>
-                <Ranking game_score="geo_score"/>
+                <Ranking gameName="geo_score"/>
 
                 </div>
                 </div>

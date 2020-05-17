@@ -152,7 +152,7 @@ export default class GameCapitals extends Component {
             gameOver: () => (<div className='playingGame'>
                 <Info style='gameover' text='GAME OVER' />
                 <Info style='score'  text={'SCORE : ' + this.state.score} />
-                <Ranking game_score="city_score"/>
+                <Ranking scoreState={this.state.score} gameName="city_score"/>
                 {/* <Links style='shered-link' /> */}
                 <Button style='play-again' action={this.tryAgain} text='Play Again' />
                 {/* <Exit style='back-menu' text='Exit Game' /> */}

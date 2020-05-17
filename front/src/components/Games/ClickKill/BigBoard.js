@@ -204,7 +204,7 @@ export default class BigBoard extends React.Component {
                                        </p>
                                 </button>
                                 <button>
-                                   <Ranking game_score="football_score"/>
+                                   <Ranking gameName="football_score"/>
                                 </button>
 
                               </div>

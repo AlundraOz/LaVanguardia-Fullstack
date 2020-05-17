@@ -24,7 +24,7 @@ class Header extends React.Component {
                         </div>
 
                     : <div>
-                      <Ranking game_score="memory_score"/>
+                      <Ranking gameName="memory_score"/>
                         <p className="memoryResult">Intentos: {this.props.tryes}</p>
                         <p className="reinit-button" onClick={this.props.resetGame}>
                             Reiniciar

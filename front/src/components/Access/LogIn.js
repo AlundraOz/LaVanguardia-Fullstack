@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MyContext } from '../../context/MyProvider';
 import {Link} from 'react-router-dom';
+import SaveScore from '../../sheredFunctions/SheredFunctions'
 
 const sendIcon = <FontAwesomeIcon icon={faPaperPlane} size='2x' color='white'/>
 
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 function LogIn() {
   const classes = useStyles();
-  const { logIn } = React.useContext(MyContext);
+  const { state, logIn } = React.useContext(MyContext);
   //state
   const [data, updateData] = useState({
     email: "",
@@ -48,6 +49,31 @@ function LogIn() {
     }).then(res => res.json())
       .then(data => logIn(data))
   }
+  /* useEffect(()=>{
+    
+    if(data!== undefined && state.score !== ''){
+      //SaveScore(state.score, data.user_id, state.nameGame)
+      let score= state.score
+      let user=data.user_id
+      fetch(`http://localhost:5000/game-score/${state.nameGame}`, {
+      method: 'PUT',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({ score , user })
+
+    }).then(res => {
+        if(res.status === 200 ){
+            console.log('saved score')
+
+        }else{
+            console.log('no hace naa')
+          }
+        })
+      
+    }
+  },[data]) */
+
 
   return (
     <div className="SignIn">
