@@ -8,60 +8,6 @@ import './Ranking.css';
 import { MyContext } from '../../context/MyProvider';
 import LogIn from '../Access/LogIn';
 
-/*export class Ranking extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modal: true,
-            ranking: []
-         
-        }
-    }
-
-    componentDidMount() {
-        fetch(`http://localhost:5000/ranking/${this.props.game_score}`)
-            .then(res => res.json())
-            .then(data => this.setState({ranking: data})) 
-    }
-
-    toggle = () => this.setState({
-            modal: !this.state.modal
-        })
-    
-   
-  render() {
-
-      return (
-        < div className = "instructionGames" >
-                 <Modal isOpen={this.state.modal} toggle={this.toggle} style={{ marginTop:"10%"}}>
-                 <ModalBody>
-                        {this.state.ranking &&
-                            <table style={{color:'black', zIndex:1000}}>
-                                <thead>
-                                <tr>
-                                    <th>NOMBRE</th>
-                                    <th>PUNTUACIÓN</th>
-                                </tr>
-                                </thead>
-                            <tbody>
-                            {this.state.ranking.map((score, index)=>{
-                                return(
-                                    <tr>
-                                        <td key={shortId.generate()}>{score.name}</td>
-                                        <td key={shortId.generate()}>{Object.values(score)[1]}</td>
-                                    </tr>
-                                )
-                            })}
-                            <button color="primary" onClick={this.toggle}>Close</button>     
-                            </tbody>
-                        </table>}
-                    </ModalBody>
-             </Modal>    
-        </div>
-    )}
-}
-
-export default Ranking;*/
 
 const Ranking=({gameName, scoreState})=>{
     const [ranking, setRanking]= useState()
