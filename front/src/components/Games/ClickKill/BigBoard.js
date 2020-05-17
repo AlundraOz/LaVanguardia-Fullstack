@@ -12,6 +12,8 @@ import CloseButton from '../../SharedButtons/CloseButton';
 import './../../SharedButtons/iframeButtons';
 import { SaveScore } from '../../../sheredFunctions/SheredFunctions';
 import { MyContext } from '../../../context/MyProvider';
+import Ranking from '../../Ranking/Ranking'
+
 
 
 
@@ -200,6 +202,9 @@ export default class BigBoard extends React.Component {
                                   <b>MACHACAR<br/>MÁS</b>
                                   <br/><p className="changeTeamLink" onClick={this.changeTeam}>cambiar de equipo
                                        </p>
+                                </button>
+                                <button>
+                                   <Ranking gameName="football_score"/>
                                 </button>
 
                               </div>

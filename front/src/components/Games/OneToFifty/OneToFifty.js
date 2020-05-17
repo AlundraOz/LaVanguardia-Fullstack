@@ -23,10 +23,16 @@ export default function OneToFifty() {
         numbers.push(i);
         styleNumbers.push(0);
     }
-    //Fill all numbers
-    useEffect(() => {
+
+    const startGame = () =>{
         setallNumbers(numbers);
         setstyle(styleNumbers);
+        setCurrentNumber(1);
+        setTimeStart(false);
+    }
+    //Fill all numbers
+    useEffect(() => {
+       startGame();
     }, [])
 
     //Fill the first half array and the second half array
@@ -84,7 +90,7 @@ export default function OneToFifty() {
                             </div>)
                     }
                 </div>
-                <button className="restartButton" onClick={() => window.location.reload()}>RESTART</button>
+                <button className="restartButton" onClick={() => startGame()}>RESTART</button>
                 <div>
                     {/* JUST TO IFRAME */}
                     <div className="iframeOneToFifty">
@@ -93,7 +99,7 @@ export default function OneToFifty() {
                                 <p className="chronoText">{timeStart === false ? '00:00:00' : <Chrono currentNumber={currentNumber} />}</p>
                             </div>
                             <div className="col-6 justifyCenter">
-                                <button className="restartButtonIframe" onClick={() => window.location.reload()}>RESTART</button>
+                                <button className="restartButtonIframe" onClick={() => startGame()}>RESTART</button>
                             </div>
                         </div>
                     </div>

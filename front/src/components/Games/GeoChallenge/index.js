@@ -9,7 +9,9 @@ import Flag from 'lyef-flags';
 import title from './geoChallengeTitle.png';
 import InstructionGames from '../../SharedButtons/InstructionGames';
 import CloseButton from '../../SharedButtons/CloseButton';
-import { SaveScore } from '../../../sheredFunctions/SheredFunctions'
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions';
+import Ranking from '../../Ranking/Ranking'
+
 
 
 
@@ -187,7 +189,9 @@ class GeoChallenge extends Component {
   }
 
   tryAgain = event => {
-    SaveScore(this.state.correctAnswers, this.context.state.user.results[0].user_id, "geo_score")
+    if(this.context.state.user.results[0].user_id){
+      SaveScore(this.state.correctAnswers, this.context.state.user.results[0].user_id, "geo_score")
+  }
   this.setState({
     contentMap: "notHidden",
     contentEnd: "hidden",
@@ -288,10 +292,12 @@ class GeoChallenge extends Component {
                    onClick = {this.tryAgain}>
                    Volver a Jugar
                 </button>
+                <Ranking gameName="geo_score"/>
+
                 </div>
                 </div>
               </div>
-              
+
         </div>
       </div>
 

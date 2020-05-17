@@ -8,7 +8,9 @@ import CloseButton from '../../SharedButtons/CloseButton';
 import pointer from './images/pointer.png';
 import backgroundBig from './images/backgroundBig.png';
 import backgroundSmall from './images/backgroundSmall.png';
-import { SaveScore } from '../../../sheredFunctions/SheredFunctions'
+import { SaveScore } from '../../../sheredFunctions/SheredFunctions';
+import Ranking from '../../Ranking/Ranking'
+
 
 
 const getRandomCoordinates = () => {
@@ -31,7 +33,6 @@ const initialState = {
   ],
 }
 const intervalFunction = (move, speed) => {
-  console.log('hola hijo de puta', speed)
   return (setInterval(move, speed))
 }
 class IndexSnake extends Component {
@@ -169,9 +170,12 @@ class IndexSnake extends Component {
      }
    }  */
   onGameOver() {
-    SaveScore(this.state.points, this.context.state.user.results[0].user_id, "snake_score")
     clearInterval(this.state.interval)
+    if(this.context.state.user.results[0].user_id){
+        SaveScore(this.state.points, this.context.state.user.results[0].user_id, "snake_score")
+    } 
     this.setState(initialState)
+
   }
   render() {
     return (
@@ -194,7 +198,8 @@ class IndexSnake extends Component {
           </button>
           <button id="startSnakeButton" onClick={this.onClickStart}>PLAY!</button>
         </div>
-        : null
+        :  null
+
         }
         <div className="game-area">
           <Snake snakeDots={this.state.snakeDots}/>

@@ -1,5 +1,5 @@
-CREATE DATABASE games_database;
-USE games_database;
+CREATE DATABASE games_database1;
+USE games_database1;
 CREATE TABLE `user_profile` (
   `user_id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -13,9 +13,6 @@ CREATE TABLE `user_profile` (
   `snake_score` int(100),
   `fifty_score` int(100)
 );
-
-use users;
-INSERT INTO
 ​
 CREATE TABLE `user_games` (
   `game_id` int,
@@ -26,6 +23,6 @@ CREATE TABLE `games` (
   `game_id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `score` int
-) ​
+); ​
 ALTER TABLE `user_games` ADD FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`);
- */
+ 

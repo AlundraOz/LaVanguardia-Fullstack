@@ -1,4 +1,7 @@
 import React , { Component } from 'react';
+import {Link} from 'react-router-dom';
+
+
 import './navbar.css';
 class Navbar extends Component {
   // componentDidMount() {
@@ -29,16 +32,18 @@ class Navbar extends Component {
   //     rootid.classList.remove("marginfix");
   //   }
   // }
+
+  // process.env.NODE_ENV === 'production' ? "https://zen-shaw-4b92a9.netlify.com/" : "//localhost:3000/"
   render() {
     return (
     <div id="header-profile">
       <div id="header-profile__wrapper">
           <div className="navbarRow">
-                      <a className="header-profile__logo" href={process.env.NODE_ENV === 'production' ? "https://zen-shaw-4b92a9.netlify.com/" : "//localhost:3000/"}>
-                  <figure className="header-profile__figure" alt="La Vanguardia">
-                      <img src="https://rsc.lavanguardia.com/img/logo-image-v1000486.svg" className="img-responsive" alt="La Vanguardia" rel="logo"></img>
-                  </figure>
-                  </a>
+                <Link to="/" className="header-profile__logo">
+                      <figure className="header-profile__figure" alt="La Vanguardia">
+                          <img src="https://rsc.lavanguardia.com/img/logo-image-v1000486.svg" className="img-responsive" alt="La Vanguardia" rel="logo"></img>
+                      </figure>
+                </Link>
           </div>
       </div>
     </div>

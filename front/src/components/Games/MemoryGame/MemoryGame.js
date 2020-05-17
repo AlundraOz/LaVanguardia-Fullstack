@@ -102,7 +102,6 @@ class MemoryGame extends React.Component {
 //method to verify if there is a winner
   verifyIfWinner(deck) {
     if (deck.filter((card) => !card.wasGuessed).length === 0) {
-      SaveScore(this.state.score, this.context.state.user.results[0].user_id, "memory_score")
       this.setState({
           winner: true
       });
@@ -111,6 +110,7 @@ class MemoryGame extends React.Component {
 
   //method to reset the game
   resetGame() {
+    SaveScore(this.state.tryes, this.context.state.user.results[0].user_id, "memory_score")
     this.setState(
       initialState()
     );

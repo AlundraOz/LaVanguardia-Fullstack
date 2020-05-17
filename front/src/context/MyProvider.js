@@ -5,15 +5,17 @@ export const MyContext = React.createContext();
 class MyProvider extends Component {
   state = {
     user:'',
+    score:'',
+    nameGame:''
   }
   render() {
-    console.log(this.props)
     return (
       <MyContext.Provider value={{
         state: this.state,
         logIn: (user) => this.setState({
           user: user
         })
+
       }}>
         {this.props.children}
       </MyContext.Provider>
